@@ -1,0 +1,79 @@
+.smaller {
+	font-size: smaller;
+}
+.headlineLeft {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFFFCC;
+}
+.subheadRight {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #FFFFCC;
+}
+.headlineRight {
+	font-weight: normal;
+	color: #FFFFCC;
+	font-size: 18px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-variant: normal;
+}
+.alert {
+	color: #FF0000;
+}
+.popUpStyle {
+	BORDER-RIGHT: #cccc00 1px solid;
+	BORDER-TOP: #cccc00 1px solid;
+	BORDER-LEFT: #cccc00 1px solid;
+	WIDTH: 150px;
+	BORDER-BOTTOM: #cccc00 1px solid;
+	POSITION: absolute;
+        MARGIN-TOP: 10px;
+	BACKGROUND-COLOR: #ffffaa;
+	padding: 5px;
+	visibility: hidden;
+}
+.emphasis {
+	font-size: x-large;
+	font-weight: bold;
+}
+.smallprint {
+	font-size: small;
+}
+
+.posCri {
+    color:green;
+}
+
+.negCri{
+    color:red;
+}
+
+.optionalCat td, .optionalCat th, .optionalCat tr{
+    background-color:#FFFFF4;
+}
+
+.criticalCat td, .criticalCat th, .criticalCat tr{
+	background-color: #DDDDDD
+}
+
+.keyCat td, .keyCat th{
+    background-color:#F4F4F4;
+}
+
+#markform {
+    width:1024px;
+}
+
+th {
+    text-align: left;
+}
+
+.tableHead {
+    background-color:#EACEF0;
+}
+
+.table {
+    background-color:#F8EFFA;
+}
+.smaller {
+	font-size: smaller;
+}
