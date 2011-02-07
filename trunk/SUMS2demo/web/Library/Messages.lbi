@@ -1,0 +1,4 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html:messages id="message" message="true">
+<p><bean:write name="message"/></p>
+</html:messages>
