@@ -21,7 +21,7 @@ public class AddressConverter implements javax.faces.convert.Converter {
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
         AddressController controller = (AddressController) facesContext.getApplication().getELResolver().
-                getValue(facesContext.getELContext(), null, "myAddressController");
+                getValue(facesContext.getELContext(), null, "addressController");
         AddressFacade af = controller.getFacade();
         Address a = af.find(Long.parseLong(value));
         return a;
