@@ -10,19 +10,27 @@
     <h:body>
         <h1>Person application</h1>
         <p>Add to and list people in the database</p>
-        <h:form>
-            <h:panelGrid columns="2">
+        <h:form id="AddNewPerson">
+            <h:panelGrid columns="3">
                 <h:outputLabel value="First name"/>
-                <h:inputText value="#{personController.current.firstname}"/>
+                <h:inputText value="#{personController.current.firstname}" id="Firstname">
+                    <f:validateRequired/>
+                </h:inputText>
+                <h:message for="Firstname"/>
 
                 <h:outputLabel value="Last name"/>
-                <h:inputText value="#{personController.current.lastname}"/>
+                <h:inputText value="#{personController.current.lastname}" id="Lastname">
+                    <f:validateRegex pattern="^\w+"/>
+                </h:inputText>
+                <h:message for="Lastname"/>
 
                 <h:outputLabel value="Address"/>
-                <h:selectOneMenu value="#{personController.current.address}">
+                <h:selectOneMenu value="#{personController.current.address}" id="Address">
                     <f:selectItems value="#{addressController.itemsAvailableSelectOne}"/>
                     <f:selectItem itemLabel="No address" itemValue="0"/>                
                 </h:selectOneMenu>
+                <h:message for="Address"/>
+
                 <h:commandButton value="Add person" action="#{personController.doAddPerson}"/>
             </h:panelGrid>
         </h:form>
