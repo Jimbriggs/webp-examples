@@ -13,19 +13,19 @@
         <h:form id="AddNewPerson">
             <h:panelGrid columns="3">
                 <h:outputLabel value="First name"/>
-                <h:inputText value="#{personController.current.firstname}" id="Firstname">
+                <h:inputText value="#{personController.newItem.firstname}" id="Firstname">
                     <f:validateRequired/>
                 </h:inputText>
                 <h:message for="Firstname"/>
 
                 <h:outputLabel value="Last name"/>
-                <h:inputText value="#{personController.current.lastname}" id="Lastname">
+                <h:inputText value="#{personController.newItem.lastname}" id="Lastname">
                     <f:validateRegex pattern="^\w+"/>
                 </h:inputText>
                 <h:message for="Lastname"/>
 
                 <h:outputLabel value="Address"/>
-                <h:selectOneMenu value="#{personController.current.address}" id="Address">
+                <h:selectOneMenu value="#{personController.newItem.address}" id="Address">
                     <f:selectItems value="#{addressController.itemsAvailableSelectOne}"/>
                     <f:selectItem itemLabel="No address" itemValue="0"/>                
                 </h:selectOneMenu>
