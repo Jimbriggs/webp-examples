@@ -38,8 +38,7 @@
         <realm-name>file</realm-name>
     </login-config>
     <security-role>
-        <description>admin
-</description>
+        <description>Administration role</description>
         <role-name>Admin</role-name>
     </security-role>
 </web-app>
