@@ -5,6 +5,8 @@
 package jim.ctrl;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.model.DataModel;
@@ -29,6 +31,7 @@ public abstract class AbstractController<T, Facade extends AbstractFacade> exten
         this.entityClass = entityClass;
     }
     protected T current = null;
+    protected T newItem = null;
     protected DataModel<T> items = null;
 
     public DataModel<T> getItems() {
@@ -49,8 +52,25 @@ public abstract class AbstractController<T, Facade extends AbstractFacade> exten
         return current;
     }
 
+    public T getNewItem() {
+        if (newItem == null) {
+            try {
+                newItem = entityClass.newInstance();
+            } catch (InstantiationException ex) {
+                Logger.getLogger(AbstractController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(AbstractController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return newItem;
+    }
+
     public void setCurrent(T current) {
         this.current = current;
+    }
+
+    public void setNewItem(T newItem) {
+        this.newItem = newItem;
     }
 
     public abstract Facade getFacade();

@@ -34,7 +34,7 @@ public class PersonController extends AbstractController<Person, PersonFacade> {
 
     public String doAddPerson() {
         try {
-            current = personRegistration.createNewPerson(current);
+            current = newItem = personRegistration.createNewPerson(newItem);
             addInfo("Person " + current.getFullName() + " added to database");
             items = new ListDataModel(personRegistration.findAllPersons());
         } catch (BusinessException ex) {
