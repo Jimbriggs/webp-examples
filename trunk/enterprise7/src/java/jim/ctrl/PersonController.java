@@ -39,7 +39,7 @@ public class PersonController extends AbstractController<Person, PersonFacade> {
             items = new ListDataModel(personRegistration.findAllPersons());
         } catch (BusinessException ex) {
             Logger.getLogger(PersonController.class.getName()).log(Level.SEVERE, null, ex);
-            addError("Person " + current.getFullName() + " cannot be added to database: " + ex.getMessage());
+            addError("Person " + newItem.getFullName() + " cannot be added to database: " + ex.getMessage());
         }
         return "personlist.xhtml";
     }
