@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Person application</title>
+    </h:head>
+    <h:body>
+        <h1>Person application</h1>
+        <p>People already in the database</p>
+         <h:dataTable id="table" value="#{personController.items}" var="p" border="1" cellpadding="3" cellspacing="0">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Firstname"/>
+                </f:facet>
+                <h:outputText value="#{p.firstname}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Lastname"/>
+                </f:facet>
+                <h:outputText value="#{p.lastname}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText value="Address"/>
+                </f:facet>
+                <h:outputText value="#{p.address.fullAddress}"/>
+            </h:column>
+        </h:dataTable>
+        <p>Add to people in the database</p>
+        <h:form id="AddNewPerson">
+            <h:panelGrid columns="3">
+                <h:outputLabel value="First name"/>
+                <h:inputText value="#{personController.newItem.firstname}" id="Firstname">
+                    <f:validateRequired/>
+                </h:inputText>
+                <h:message for="Firstname"/>
+
+                <h:outputLabel value="Last name"/>
+                <h:inputText value="#{personController.newItem.lastname}" id="Lastname">
+                    <f:validateRegex pattern="^\w+"/>
+                </h:inputText>
+                <h:message for="Lastname"/>
+
+                <h:outputLabel value="Address"/>
+                <h:selectOneMenu value="#{personController.newItem.address}" id="Address">
+                    <f:selectItems value="#{addressController.itemsAvailableSelectOne}"/>
+                    <f:selectItem itemLabel="No address" itemValue="0"/>                
+                </h:selectOneMenu>
+                <h:message for="Address"/>
+
+                <h:commandButton id="addButton" value="Add person" action="#{personController.doAddPerson}" >
+                    <f:ajax execute="@form" render="@all"/>
+                </h:commandButton>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
