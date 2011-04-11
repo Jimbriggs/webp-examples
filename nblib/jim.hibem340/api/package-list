@@ -1,0 +1,8 @@
+org.hibernate.ejb
+org.hibernate.ejb.connection
+org.hibernate.ejb.event
+org.hibernate.ejb.instrument
+org.hibernate.ejb.packaging
+org.hibernate.ejb.transaction
+org.hibernate.ejb.util
+org.hibernate.engine
