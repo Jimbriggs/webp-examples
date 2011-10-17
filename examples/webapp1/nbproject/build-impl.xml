@@ -39,7 +39,7 @@
         <property file="nbproject/private/private.properties"/>
     </target>
     <target name="-pre-init-libraries">
-        <property location="C:\Documents and Settings\briggsj\My Documents\Nblib\nblibraries.properties" name="libraries.path"/>
+        <property location="C:\Users\BriggsJ\Documents\Nblib\nblibraries.properties" name="libraries.path"/>
         <dirname file="${libraries.path}" property="libraries.dir.nativedirsep"/>
         <pathconvert dirsep="/" property="libraries.dir">
             <path path="${libraries.dir.nativedirsep}"/>
