@@ -15,6 +15,7 @@
     </head>
     <body>
         <h1>Person application</h1>
+        <p>This application adds a second entity class (Address) to the database</p>
         <p>Add to and list people in the database</p>
         <form name="NewPerson" action="addNewPersonServlet">
             <table border="1" cellpadding="3" cellspacing="0">
