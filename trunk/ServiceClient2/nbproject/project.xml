@@ -17,7 +17,7 @@
             </test-roots>
         </data>
         <libraries xmlns="http://www.netbeans.org/ns/ant-project-libraries/1">
-            <definitions>C:\Documents and Settings\briggsj\My Documents\Homepage\jimapp\nblib\nblibraries.properties</definitions>
+            <definitions>C:\Users\BriggsJ\Documents\Nblib\nblibraries.properties</definitions>
         </libraries>
     </configuration>
 </project>
