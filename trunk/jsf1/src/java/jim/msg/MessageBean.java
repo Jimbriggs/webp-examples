@@ -4,8 +4,10 @@
  */
 package jim.msg;
 
+import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.mail.Session;
 
 /**
  *
@@ -14,7 +16,6 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class MessageBean {
-
     private String message = "nobody";
     private String newMessage;
 
