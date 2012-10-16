@@ -4,10 +4,8 @@
  */
 package jim.msg;
 
-import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.mail.Session;
 
 /**
  *
