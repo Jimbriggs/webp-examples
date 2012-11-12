@@ -27,6 +27,14 @@ public class CustomerBean extends BaseBean {
     private Customer newCustomer = new Customer();
     private String searchString;
 
+    public Customer getNewCustomer() {
+        return newCustomer;
+    }
+
+    public void setNewCustomer(Customer newCustomer) {
+        this.newCustomer = newCustomer;
+    }
+
     public String getSearchString() {
         return searchString;
     }
