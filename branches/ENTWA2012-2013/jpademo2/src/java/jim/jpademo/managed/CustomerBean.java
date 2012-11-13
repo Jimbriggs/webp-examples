@@ -5,11 +5,15 @@
 package jim.jpademo.managed;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import jim.jpademo.bus.CustomerService;
 import jim.jpademo.entities.Customer;
-import jim.jpademo.facades.CustomerFacade;
 
 /**
  *
@@ -17,41 +21,43 @@ import jim.jpademo.facades.CustomerFacade;
  */
 @ManagedBean
 @RequestScoped
-public class CustomerBean {
+public class CustomerBean extends BaseBean {
 
-    private String firstName;
-    private String lastName;
+    private Customer newCustomer = new Customer();
+    private String searchString;
 
-    public String getFirstName() {
-        return firstName;
+    public String getSearchString() {
+        return searchString;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setSearchString(String searchString) {
+        this.searchString = searchString;
     }
 
-    public String getLastName() {
-        return lastName;
+    public Customer getNewCustomer() {
+        return newCustomer;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setNewCustomer(Customer newCustomer) {
+        this.newCustomer = newCustomer;
     }
-    
     @EJB
-    private CustomerFacade cf;
-    
+    private CustomerService cs;
+
     public String addCustomer() {
-        Customer cust = new Customer();
-        cust.setFirstName(firstName);
-        cust.setLastName(lastName);
-        cf.create(cust);
+        try {
+            newCustomer = cs.createCustomer(newCustomer);
+        } catch (Exception ex) {
+            Logger.getLogger(CustomerBean.class.getName()).log(Level.SEVERE, null, ex);
+            addError(ex.getMessage());
+        }
         return "";
     }
-    
+
     public List<Customer> getCustByName() {
-        return cf.findAll();
+        return cs.findByLastName(searchString);
     }
+
     /**
      * Creates a new instance of CustomerBean
      */

@@ -9,13 +9,17 @@
         <h:form>
             <h:panelGrid  columns="3">
                 <h:outputLabel value="First name"/>
-                <h:inputText id="firstName" value="#{customerBean.firstName}"/>
+                <h:inputText id="firstName" value="#{customerBean.newCustomer.firstName}"/>
                 <h:message for="firstName"/>
 
                 <h:outputLabel value="Last name"/>
-                <h:inputText id="lastName" value="#{customerBean.lastName}"/>
+                <h:inputText id="lastName" value="#{customerBean.newCustomer.lastName}"/>
                 <h:message for="lastName"/>
 
+                <h:outputLabel value="and list names containing..."/>
+                <h:inputText id="searchString" value="#{customerBean.searchString}"/>
+                <h:message for="searchString"/>
+                
                 <h:commandButton value="Add" action="#{customerBean.addCustomer}"/>
             </h:panelGrid>
         </h:form>
