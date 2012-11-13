@@ -7,7 +7,11 @@ package jim.jpademo.managed;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
-public class BaseBean {
+/**
+ *
+ * @author BriggsJ
+ */
+public abstract class BaseBean {
 
     public void addMessage(String clientId, FacesMessage.Severity severity, String summary, String details) {
         FacesContext fc = FacesContext.getCurrentInstance();
@@ -30,5 +34,5 @@ public class BaseBean {
     public void addFatal(String message) {
         addMessage(null, FacesMessage.SEVERITY_FATAL, message, message);
     }
-    
+
 }
