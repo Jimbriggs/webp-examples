@@ -7,7 +7,9 @@ package jim.jpademo.bus;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import jim.jpademo.entities.Address;
 import jim.jpademo.entities.Customer;
+import jim.jpademo.facades.AddressFacade;
 import jim.jpademo.facades.CustomerFacade;
 
 /**
@@ -19,6 +21,8 @@ public class CustomerService {
 
     @EJB
     private CustomerFacade cf;
+    @EJB
+    private AddressFacade af;
 
     public Customer createCustomer(Customer cust) throws BusinessException {
         if (cust == null) {
@@ -28,8 +32,28 @@ public class CustomerService {
         return cust;
     }
 
+    public Address createAddress(Address addr) throws BusinessException {
+        if (addr == null) {
+            throw new BusinessException("Address is null");
+        }
+        af.create(addr);
+        return addr;
+    }
+
+    public Customer changeAddress(Customer cust, Address addr) throws BusinessException {
+        if (cust == null || addr == null) {
+            throw new BusinessException("Customer or address is null");
+        }
+        cust.setAddress(addr);
+        addr.getCustomers().add(cust);
+        return cust;
+    }
+
     public List<Customer> getCustByName(String searchString) {
         return cf.findByName("%" + searchString + "%");
     }
 
+    public List<Address> getAllAddresses() {
+        return af.findAll();
+    }
 }

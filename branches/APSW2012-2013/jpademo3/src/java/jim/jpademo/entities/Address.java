@@ -5,49 +5,41 @@
 package jim.jpademo.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author BriggsJ
  */
 @Entity
-public class Customer implements Serializable {
+public class Address implements Serializable {
+    @OneToMany(mappedBy = "address")
+    private List<Customer> customers;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String firstName;
-    private String lastName;
-    @ManyToOne
-    private Address address;
+    private String city;
 
-    public Address getAddress() {
-        return address;
+    public String getCity() {
+        return city;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public List<Customer> getCustomers() {
+        return customers;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setCustomers(List<Customer> customers) {
+        this.customers = customers;
     }
 
     public Long getId() {
@@ -68,10 +60,10 @@ public class Customer implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Customer)) {
+        if (!(object instanceof Address)) {
             return false;
         }
-        Customer other = (Customer) object;
+        Address other = (Address) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -80,7 +72,8 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "jim.jpademo.entities.Customer[ id=" + id + " ]";
+        //return "jim.jpademo.entities.Address[ id=" + id + " ]";
+        return this.city;
     }
 
 }
