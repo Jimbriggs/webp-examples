@@ -4,6 +4,7 @@
       xmlns:h="http://java.sun.com/jsf/html">
     <h:head>
         <title>Customer database</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
     </h:head>
     <h:body>
         <h:form>
@@ -19,7 +20,7 @@
                 <h:outputLabel value="and list names containing..."/>
                 <h:inputText id="searchString" value="#{customerBean.searchString}"/>
                 <h:message for="searchString"/>
-                
+
                 <h:commandButton value="Add" action="#{customerBean.addCustomer}"/>
             </h:panelGrid>
         </h:form>
@@ -32,4 +33,6 @@
             </h:column>
         </h:dataTable>
     </h:body>
+
+
 </html>
