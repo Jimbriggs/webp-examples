@@ -41,7 +41,7 @@ public class Address implements Serializable {
     public void setCity(String city) {
         this.city = city;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -72,7 +72,8 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "jim.jpademo.entities.Address[ id=" + id + " ]";
+        //return "jim.jpademo.entities.Address[ id=" + id + " ]";
+        return this.city;
     }
-    
+
 }

@@ -24,7 +24,7 @@ public class Customer implements Serializable {
     private String firstName;
     private String lastName;
     @ManyToOne
-    private Address address;
+    private Address address = new Address();
 
     public Address getAddress() {
         return address;
@@ -82,5 +82,5 @@ public class Customer implements Serializable {
     public String toString() {
         return "jim.jpademo.entities.Customer[ id=" + id + " ]";
     }
-    
+
 }

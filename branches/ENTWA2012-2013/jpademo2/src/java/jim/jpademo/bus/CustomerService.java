@@ -7,7 +7,9 @@ package jim.jpademo.bus;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import jim.jpademo.entities.Address;
 import jim.jpademo.entities.Customer;
+import jim.jpademo.facades.AddressFacade;
 import jim.jpademo.facades.CustomerFacade;
 
 /**
@@ -19,6 +21,8 @@ public class CustomerService {
 
     @EJB
     private CustomerFacade cf;
+    @EJB
+    private AddressFacade af;
 
     public Customer createCustomer(Customer c) throws BusinessException {
         if (c.getFirstName().equalsIgnoreCase(c.getLastName())) {
@@ -26,6 +30,12 @@ public class CustomerService {
         }
         cf.create(c);
         return c;
+    }
+
+    public Address createAddress(Address a) throws BusinessException {
+        //validation
+        af.create(a);
+        return a;
     }
 
     public List<Customer> findByLastName(String searchString) {

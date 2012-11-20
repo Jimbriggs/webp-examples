@@ -20,6 +20,9 @@ public class AddressConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
+        if (value.isEmpty()) {
+            return null;
+        }
         Long num = new Long(value);
         AddressBean ab = (AddressBean) context.getApplication().getELResolver().getValue(context.getELContext(), null, "addressBean");
         Address address = ab.getFacade().find(num);

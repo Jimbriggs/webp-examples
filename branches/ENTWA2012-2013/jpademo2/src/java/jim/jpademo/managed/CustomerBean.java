@@ -53,7 +53,7 @@ public class CustomerBean extends BaseBean {
     }
 
     public List<Customer> getCustByName() {
-        return cs.findByLastName(searchString);
+        return cs.findByLastName("");
     }
 
     /**
