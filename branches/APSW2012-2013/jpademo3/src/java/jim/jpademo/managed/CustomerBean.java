@@ -14,6 +14,7 @@ import jim.jpademo.bus.BusinessException;
 import jim.jpademo.bus.CustomerService;
 import jim.jpademo.entities.Address;
 import jim.jpademo.entities.Customer;
+import jim.jpademo.facades.CustomerFacade;
 
 /**
  *
@@ -21,7 +22,16 @@ import jim.jpademo.entities.Customer;
  */
 @ManagedBean
 @RequestScoped
-public class CustomerBean extends BaseBean {
+public class CustomerBean extends AbstractBean<Customer, CustomerFacade> {
+
+    @EJB
+    private CustomerFacade cf;
+
+    @Override
+    public CustomerFacade getFacade() {
+        return cf;
+    }
+
 
     private Customer newCustomer = new Customer();
     private String searchString;
@@ -65,5 +75,6 @@ public class CustomerBean extends BaseBean {
      * Creates a new instance of CustomerBean
      */
     public CustomerBean() {
+        super(Customer.class);
     }
 }

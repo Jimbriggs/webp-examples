@@ -8,15 +8,15 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import jim.jpademo.entities.Address;
-import jim.jpademo.managed.AddressBean;
+import jim.jpademo.entities.Customer;
+import jim.jpademo.managed.CustomerBean;
 
 /**
  *
  * @author BriggsJ
  */
-@FacesConverter(value="addressConverter")
-public class AddressConverter implements Converter {
+@FacesConverter(value="customerConverter")
+public class CustomerConverter implements Converter {
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
@@ -24,16 +24,16 @@ public class AddressConverter implements Converter {
             return null;
         }
         Long num = new Long(value);
-        AddressBean ab = (AddressBean) context.getApplication().getELResolver().getValue(context.getELContext(), null, "addressBean");
-        Address address = ab.getFacade().find(num);
-        return address;
+        CustomerBean ab = (CustomerBean) context.getApplication().getELResolver().getValue(context.getELContext(), null, "customerBean");
+        Customer customer = ab.getFacade().find(num);
+        return customer;
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        if (value instanceof Address) {
-            Address a = (Address)value;
-            return a.getId().toString();
+        if (value instanceof Customer) {
+            Customer c = (Customer)value;
+            return c.getId().toString();
         } else {
             return "";
         }

@@ -29,6 +29,7 @@ public class CustomerService {
             throw new BusinessException("Customer is null");
         }
         cf.create(cust);
+        cust.getAddress().getCustomers().add(cust);
         return cust;
     }
 

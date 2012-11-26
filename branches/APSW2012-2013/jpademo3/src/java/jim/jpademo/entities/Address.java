@@ -76,4 +76,15 @@ public class Address implements Serializable {
         return this.city;
     }
 
+    public String getDisplay() {
+        return city + " " + city;
+    }
+
+    public String getCustomerDisplay() {
+        StringBuilder sb = new StringBuilder();
+        for (Customer c : this.getCustomers()) {
+            sb.append(c.getFullName()+"<BR>");
+        }
+        return sb.toString();
+    }
 }

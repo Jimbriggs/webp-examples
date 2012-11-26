@@ -80,7 +80,11 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "jim.jpademo.entities.Customer[ id=" + id + " ]";
+//        return "jim.jpademo.entities.Customer[ id=" + id + " ]";
+        return this.getFullName();
     }
 
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
+    }
 }

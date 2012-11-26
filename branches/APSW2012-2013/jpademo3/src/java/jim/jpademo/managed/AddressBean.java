@@ -32,7 +32,7 @@ public class AddressBean extends AbstractBean<Address, AddressFacade> {
         return af;
     }
 
-    public String doAddAddress() {
+    public String addItem() {
         try {
             cs.createAddress(newItem);
         } catch (BusinessException ex) {
