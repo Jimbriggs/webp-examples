@@ -35,6 +35,7 @@ public class AddressBean extends AbstractBean<Address, AddressFacade> {
     public String addItem() {
         try {
             cs.createAddress(newItem);
+            this.setItems(null);
         } catch (BusinessException ex) {
             Logger.getLogger(AddressBean.class.getName()).log(Level.SEVERE, null, ex);
         }

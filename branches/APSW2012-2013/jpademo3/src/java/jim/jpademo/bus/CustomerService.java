@@ -45,7 +45,11 @@ public class CustomerService {
         if (cust == null || addr == null) {
             throw new BusinessException("Customer or address is null");
         }
+        cust = cf.edit(cust);
+        addr = af.edit(addr);
+        Address oldAddress = cust.getAddress();
         cust.setAddress(addr);
+        oldAddress.getCustomers().remove(cust);
         addr.getCustomers().add(cust);
         return cust;
     }
