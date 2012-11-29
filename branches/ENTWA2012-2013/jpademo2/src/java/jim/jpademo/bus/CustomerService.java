@@ -29,6 +29,7 @@ public class CustomerService {
             throw new BusinessException("first name and last name are the same");
         }
         cf.create(c);
+        c.getAddress().getCustomers().add(c);
         return c;
     }
 
@@ -36,6 +37,28 @@ public class CustomerService {
         //validation
         af.create(a);
         return a;
+    }
+
+    public Customer changeAddress(Customer customer, Address newAddress) throws BusinessException {
+        //validation
+        if (customer == null) {
+            throw new BusinessException("customer is null");
+        }
+        if (newAddress == null) {
+            throw new BusinessException("address is null");
+        }
+
+        //confirm that objects passed as parameters are managed by the persistence unit
+        customer = cf.edit(customer);
+        newAddress = af.edit(newAddress);
+
+        //functionality
+        Address oldAddress = customer.getAddress();
+        oldAddress.getCustomers().remove(customer);
+        customer.setAddress(newAddress);
+        newAddress.getCustomers().add(customer);
+
+        return customer;
     }
 
     public List<Customer> findByLastName(String searchString) {
