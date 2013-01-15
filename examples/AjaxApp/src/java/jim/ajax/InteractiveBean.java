@@ -28,7 +28,8 @@ public class InteractiveBean {
     public void setText(String text) {
         this.text = text;
     }
-    private Integer length;
+    
+    private Integer length = 0;
 
     public Integer getLength() {
         return length;
