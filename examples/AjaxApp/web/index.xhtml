@@ -14,8 +14,10 @@
                     <f:ajax event="keyup" render="text length in" />
                     <!--listener="#{interactiveBean.countListener}"/  -->
                 </h:inputText>
+
                 <h:outputLabel value="Out:"/>
                 <h:outputText id="text" value="#{interactiveBean.text}" />
+
                 <h:outputLabel value="Length:"/>
                 <h:outputText id="length" value="#{interactiveBean.length}" />
             </h:panelGrid>
