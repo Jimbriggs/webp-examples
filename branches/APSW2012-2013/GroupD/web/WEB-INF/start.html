@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Start Page</title>
+    </h:head>
+    <body>
+        <h1></h1>
+        <h:form>
+            <h:panelGrid columns="3">
+
+                <h:outputLabel value="Flight Number:" for="flightNumber" />
+                <h:inputText id="flightNumber" value="#{flightBean.flight.flightNumber}"
+                             validatorMessage="Invalid flight number. Example: AB1234">
+                    <f:validateRegex pattern="[A-Za-z]{2}\d{4}" />
+                </h:inputText>
+                <h:message for="flightNumber" errorClass="error" />
+
+                <h:outputLabel value="Departure Date:" for="date" />
+                <h:inputText id="date" value="#{flightBean.flight.date}" required="true"
+                             converterMessage="Invalid date. Example: 01/06/2012">
+                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                </h:inputText>
+                <h:message for="date" errorClass="error" />
+
+                <h:panelGroup>                
+                    <h:commandButton value="Add" action="#{sessionBean.addNewFlight(flightBean.flight)}" />
+                    <h:commandButton value="Cancel" action="index" immediate="true" />
+                </h:panelGroup>
+
+            </h:panelGrid>
+        </h:form>
+    </body>
+</html>

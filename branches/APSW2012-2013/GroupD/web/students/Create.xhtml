@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateStudentsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateStudentsLabel_serialVersionUID}" for="serialVersionUID" />
+                    <h:inputText id="serialVersionUID" value="#{studentsController.selected.serialVersionUID}" title="#{bundle.CreateStudentsTitle_serialVersionUID}" />
+                    <h:outputLabel value="#{bundle.CreateStudentsLabel_forename}" for="forename" />
+                    <h:inputText id="forename" value="#{studentsController.selected.forename}" title="#{bundle.CreateStudentsTitle_forename}" />
+                    <h:outputLabel value="#{bundle.CreateStudentsLabel_surname}" for="surname" />
+                    <h:inputText id="surname" value="#{studentsController.selected.surname}" title="#{bundle.CreateStudentsTitle_surname}" />
+                    <h:outputLabel value="#{bundle.CreateStudentsLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{studentsController.selected.password}" title="#{bundle.CreateStudentsTitle_password}" />
+                    <h:outputLabel value="#{bundle.CreateStudentsLabel_username}" for="username" />
+                    <h:inputText id="username" value="#{studentsController.selected.username}" title="#{bundle.CreateStudentsTitle_username}" />
+                    <h:outputLabel value="#{bundle.CreateStudentsLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{studentsController.selected.email}" title="#{bundle.CreateStudentsTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreateStudentsLabel_phone}" for="phone" />
+                    <h:inputText id="phone" value="#{studentsController.selected.phone}" title="#{bundle.CreateStudentsTitle_phone}" />
+                    <h:outputLabel value="#{bundle.CreateStudentsLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{studentsController.selected.id}" title="#{bundle.CreateStudentsTitle_id}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{studentsController.create}" value="#{bundle.CreateStudentsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{studentsController.prepareList}" value="#{bundle.CreateStudentsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateStudentsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

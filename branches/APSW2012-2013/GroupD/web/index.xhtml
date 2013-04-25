@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>SUMS</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h1>Student Unit Management System</h1>
+            <h:form>
+                <h:outputLabel value="Username "/>  <td><h:inputText id="username" type="text" /></td>
+                <br></br>
+                <h:outputLabel value="Password "/>  <td><h:inputText id="password" type="text" /></td>
+                <br></br> 
+                <h:commandButton  value="login" type="submit" /> 
+                <h:commandButton  value="Register" action="Regist.xhtml"/>
+            </h:form>
+        </f:view>
+        <br />    
+    </h:body>
+
+</html>
+
