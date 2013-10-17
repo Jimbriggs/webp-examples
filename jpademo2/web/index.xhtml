@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Customer database</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid  columns="3">
+                <h:outputLabel value="First name"/>
+                <h:inputText id="firstName" value="#{customerBean.newCustomer.firstName}"/>
+                <h:message for="firstName"/>
+
+                <h:outputLabel value="Last name"/>
+                <h:inputText id="lastName" value="#{customerBean.newCustomer.lastName}"/>
+                <h:message for="lastName"/>
+
+                <h:outputLabel value="Address"/>
+                <h:selectOneMenu value="#{customerBean.newCustomer.address}" id="address">
+                    <f:selectItems value="#{addressBean.itemsAvailableSelectOne}"/>
+                    <f:converter converterId="addressConverter"/>
+                </h:selectOneMenu>
+                <h:message for="address"/>
+
+                <h:commandButton value="Add" action="#{customerBean.addCustomer}"/>
+            </h:panelGrid>
+        </h:form>
+        <h:dataTable  var="c" value="#{customerBean.custByName}">
+            <h:column>
+                <h:outputLabel value="#{c.firstName}"/>
+            </h:column>
+            <h:column>
+                <h:outputLabel value="#{c.lastName}"/>
+            </h:column>
+            <h:column>
+                <h:outputLabel value="#{c.address.city}"/>
+            </h:column>
+        </h:dataTable>
+
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="City"/>
+                <h:inputText value="#{addressBean.newItem.city}" id="city"/>
+                <h:message for="city"/>
+
+                <h:commandButton value="Add address" action="#{addressBean.addItem}"/>
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+
+
+</html>

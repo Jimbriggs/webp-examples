@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://localhost:8080/Service2/ValidatorService?wsdl" uri="xml-resources/web-service-references/ValidatorService/wsdl/localhost_8080/Service2/ValidatorService.wsdl"/>
-    <system systemId="http://localhost:8080/Service2/ValidatorService?xsd=1" uri="xml-resources/web-service-references/ValidatorService/wsdl/localhost_8080/Service2/ValidatorService.xsd_1.xsd"/>
-    <system systemId="http://localhost:8080/Service2/DoublerService?wsdl" uri="xml-resources/web-service-references/DoublerService/wsdl/localhost_8080/Service2/DoublerService.wsdl"/>
-    <system systemId="http://localhost:8080/Service2/DoublerService?xsd=1" uri="xml-resources/web-service-references/DoublerService/wsdl/localhost_8080/Service2/DoublerService.xsd_1.xsd"/>
-</catalog>
