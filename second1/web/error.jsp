@@ -1,6 +1,6 @@
 <%--
-    Document   : second
-    Created on : 15-Oct-2013, 10:39:38
+    Document   : error
+    Created on : 15-Oct-2013, 14:16:40
     Author     : BriggsJ
 --%>
 
@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World ${number}!</h1>
+        <h1>Error</h1>
+        Error message: ${error}
     </body>
 </html>
