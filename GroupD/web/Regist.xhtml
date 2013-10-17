@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <head>
+        <title>Registration Page</title>   
+    </head>
+    <body>
+        <h1>Registration Page</h1>
+           <h:form >
+                    <h:outputLabel value="(*) indicates required fields "/>
+                    <br></br>
+                    <h:outputLabel for="Username" value="Username(*): "/>
+                    <h:inputText id="UserName" label="Username" 
+                                 value=""
+                                 required="true">                         
+                    </h:inputText>
+                    <h:message for="UserName"/>
+                    <br></br> 
+                   
+                    <h:outputLabel for="ForeName" value="Forename(*): "/>
+                    <h:inputText id="ForeName" label="Forename"
+                                 value="" />
+ 
+                    <h:message for="ForeName"/>
+                    <br></br>  
+                    
+                    
+                    <h:outputLabel for="SurName" value="Surname(*): "/>
+                    <h:inputText id="SurName" label="Surname"
+                                 value="" />
+                    <h:message for="SurName" />
+                    <br></br>                      
+                    
+                    
+                    <h:outputLabel for="Password" value="Password(*): "/>
+                    <h:inputText id="Password" label="Password"
+                                 value="" />
+                    <h:message for="Password" />
+                    <br></br>  
+                    
+                    <h:outputLabel for="Phone" value="Phone(*): "/>
+                    <h:inputText id="Phone" label="Phone"
+                                 value="" />
+                    <h:message for="Phone" />
+                    <br></br>  
+                    
+                    <h:outputLabel for="Email" value="Email(*): "/>
+                    <h:inputText id="Email" label="Email"
+                                 value="" />
+                    <h:message for="Email" />
+                    <br></br>  
+                    
+                    <h:outputLabel for="StudentID" value="StudentID(*): "/>
+                    <h:inputText id="StudentID" label="StudentID"
+                                 value="" />
+                    <h:message for="StudentID" />
+                    <br></br>
+
+                    
+                <h:commandButton  value="Submit" type="submit"/> 
+                <h:commandButton  value="Register" action="Regist.xhtml"/>
+           </h:form>  
+    </body>
+</html>

@@ -1,6 +1,0 @@
-AuthUserFile /home/jim/disco/passwd.txt
-AuthGroupFile /home/jim/disco/group.txt
-AuthName "SUMS - Staff use the same username and password as for PUMS. No student access."
-AuthType Basic
-
-require group staff
