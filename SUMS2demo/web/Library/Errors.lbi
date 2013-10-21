@@ -1,4 +1,0 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<html:messages id="error" message="false">
-<p><bean:write name="error"/></p>
-</html:messages>
