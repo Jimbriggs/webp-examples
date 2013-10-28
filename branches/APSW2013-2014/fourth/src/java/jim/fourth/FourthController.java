@@ -41,7 +41,7 @@ public class FourthController {
     }
 
     public String doChangeName () {
-        setName(newName);
+        setName(getNewName());
         return "";
     }
 }
