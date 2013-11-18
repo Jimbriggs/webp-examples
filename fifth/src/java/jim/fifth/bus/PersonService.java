@@ -9,7 +9,9 @@ package jim.fifth.bus;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import jim.fifth.ent.Address;
 import jim.fifth.ent.Person;
+import jim.fifth.pers.AddressFacade;
 import jim.fifth.pers.PersonFacade;
 
 /**
@@ -24,6 +26,8 @@ public class PersonService {
 
     @EJB
     private PersonFacade pf;
+    @EJB
+    private AddressFacade af;
 
     public Person createNewPerson (Person p) throws BusinessException {
         //check business rules
