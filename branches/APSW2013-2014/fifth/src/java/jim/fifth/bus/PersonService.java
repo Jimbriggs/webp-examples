@@ -42,4 +42,12 @@ public class PersonService {
     public List<Person> getAllPersons() {
         return pf.findAll();
     }
+
+    public Person setPersonHome(Person p, Address a) throws BusinessException {
+        p = pf.edit(p);
+        a = af.edit(a);
+        p.setHome(a);
+        a.getOccupiers().add(p);
+        return p;
+    }
 }
