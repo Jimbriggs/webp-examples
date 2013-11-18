@@ -1,0 +1,67 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package jim.fifth.ctrl;
+
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+import jim.fifth.bus.BusinessException;
+import jim.fifth.bus.PersonService;
+import jim.fifth.ent.Person;
+
+/**
+ *
+ * @author BriggsJ
+ */
+@Named("personController")
+@RequestScoped
+public class PersonController {
+
+    /**
+     * Creates a new instance of PersonController
+     */
+    public PersonController() {
+    }
+
+    private String newName;
+
+    public String getNewName() {
+        return newName;
+    }
+
+    public void setNewName(String newName) {
+        this.newName = newName;
+    }
+
+    private List<Person> allPersons;
+
+    public List<Person> getAllPersons() {
+        return allPersons;
+    }
+
+    public void setAllPersons(List<Person> allPersons) {
+        this.allPersons = allPersons;
+    }
+
+    @EJB
+    private PersonService ps;
+
+    public String addPerson() {
+        Person p = new Person();
+        p.setName(newName);
+        try {
+            ps.createNewPerson(p);
+        } catch (BusinessException ex) {
+            Logger.getLogger(PersonController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        allPersons = ps.getAllPersons();
+        return "";
+    }
+}
