@@ -36,6 +36,10 @@ public class Address implements Serializable {
         this.occupiers = occupiers;
     }
 
+    public void addOccupant(Person p) {
+        this.occupiers.add(p);
+    }
+
     public String getDetails() {
         return details;
     }

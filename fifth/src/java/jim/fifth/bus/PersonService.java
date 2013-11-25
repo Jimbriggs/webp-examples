@@ -6,6 +6,7 @@
 
 package jim.fifth.bus;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -51,7 +52,27 @@ public class PersonService {
         p = pf.edit(p);
         a = af.edit(a);
         p.setHome(a);
-        a.getOccupiers().add(p);
+        a.addOccupant(p);
         return p;
+    }
+
+    public Person changeAddress(Person p, Address newAddress) throws BusinessException {
+        p = pf.edit(p);
+        newAddress = af.edit(newAddress);
+        Address oldAddress = p.getHome();
+        oldAddress.getOccupiers().remove(p);
+        newAddress.addOccupant(p);
+        p.setHome(newAddress);
+        return p;
+    }
+
+    public List<Person> liveAtAddress(String searchString) throws BusinessException {
+        List<Address> addrList = af.findByAddress(searchString);
+        List<Person> personList = new ArrayList<>();
+        for (Address a : addrList) {
+            List<Person> occupiers = a.getOccupiers();
+            personList.addAll(occupiers);
+        }
+        return personList;
     }
 }

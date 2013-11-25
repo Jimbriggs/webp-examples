@@ -6,9 +6,12 @@
 
 package jim.fifth.pers;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import jim.fifth.ent.Address;
 import jim.fifth.ent.Person;
 
 /**
@@ -29,4 +32,15 @@ public class PersonFacade extends AbstractFacade<Person> {
         super(Person.class);
     }
 
+    public List<Person> findPersonAtHomeAddress(Address a) {
+        Query q = em.createQuery("SELECT p FROM Person p WHERE p.home = :a");
+        q.setParameter("a", a);
+        return q.getResultList();
+    }
+
+    public List<Person> findPersonAtHomeAddress(String searchString) {
+        Query q = em.createQuery("SELECT p FROM Person p WHERE p.home.details LIKE :search");
+        q.setParameter("search", "%"+searchString+"%");
+        return q.getResultList();
+    }
 }
