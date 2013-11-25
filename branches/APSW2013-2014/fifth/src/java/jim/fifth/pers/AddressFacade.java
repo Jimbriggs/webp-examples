@@ -6,9 +6,11 @@
 
 package jim.fifth.pers;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import jim.fifth.ent.Address;
 
 /**
@@ -29,4 +31,9 @@ public class AddressFacade extends AbstractFacade<Address> {
         super(Address.class);
     }
 
+    public List<Address> findByAddress(String text) {
+        Query q = em.createQuery("SELECT a FROM Address a WHERE a.details LIKE :search");
+        q.setParameter("search", "%"+text+"%");
+        return q.getResultList();
+    }
 }
