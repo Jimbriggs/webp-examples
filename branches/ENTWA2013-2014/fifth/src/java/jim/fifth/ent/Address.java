@@ -7,40 +7,49 @@
 package jim.fifth.ent;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author BriggsJ
  */
 @Entity
-public class Person implements Serializable {
+public class Address implements Serializable {
+    @OneToMany(mappedBy = "home")
+    private List<Person> occupiers;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    @ManyToOne
-    private Address home;
+    private String details;
 
-    public Address getHome() {
-        return home;
+    public List<Person> getOccupiers() {
+        return occupiers;
     }
 
-    public void setHome(Address home) {
-        this.home = home;
+    public void setOccupiers(List<Person> occupiers) {
+        this.occupiers = occupiers;
     }
 
-    public String getName() {
-        return name;
+    public void addOccupant(Person p) {
+        this.occupiers.add(p);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void removeOccupant(Person p) {
+        this.occupiers.remove(p);
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public Long getId() {
@@ -61,10 +70,10 @@ public class Person implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person)) {
+        if (!(object instanceof Address)) {
             return false;
         }
-        Person other = (Person) object;
+        Address other = (Address) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -73,7 +82,7 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "jim.fifth.Person[ id=" + id + " ]";
+        return "jim.fifth.ent.Address[ id=" + id + " ]";
     }
 
 }

@@ -12,14 +12,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import jim.fifth.ent.Address;
-import jim.fifth.ent.Person;
 
 /**
  *
  * @author BriggsJ
  */
 @Stateless
-public class PersonFacade extends AbstractFacade<Person> {
+public class AddressFacade extends AbstractFacade<Address> {
     @PersistenceContext(unitName = "fifthPU")
     private EntityManager em;
 
@@ -28,19 +27,13 @@ public class PersonFacade extends AbstractFacade<Person> {
         return em;
     }
 
-    public PersonFacade() {
-        super(Person.class);
+    public AddressFacade() {
+        super(Address.class);
     }
 
-    public List<Person> findPersonAtHomeAddress(Address a) {
-        Query q = em.createQuery("SELECT p FROM Person p WHERE p.home = :a");
-        q.setParameter("a", a);
-        return q.getResultList();
-    }
-
-    public List<Person> findPersonAtHomeAddress(String searchString) {
-        Query q = em.createQuery("SELECT p FROM Person p WHERE p.home.details LIKE :search");
-        q.setParameter("search", "%"+searchString+"%");
+    public List<Address> findByAddress(String text) {
+        Query q = em.createQuery("SELECT a FROM Address a WHERE a.details LIKE :search");
+        q.setParameter("search", "%"+text+"%");
         return q.getResultList();
     }
 }
