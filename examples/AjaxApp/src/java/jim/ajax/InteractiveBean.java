@@ -27,15 +27,20 @@ public class InteractiveBean {
 
     public void setText(String text) {
         this.text = text;
+//        length = text.length();
     }
-    
+
     private Integer length = 0;
 
     public Integer getLength() {
-        return length;
+        return text.length();
     }
 
     public void countListener(AjaxBehaviorEvent event) {
-        length = text.length();
+//        length = text.length();
+    }
+
+    public boolean isShowlength() {
+        return text.length() > 6;
     }
 }
