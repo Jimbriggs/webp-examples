@@ -22,7 +22,7 @@ import jim.sixthS.pers.PersonFacade;
  * @author BriggsJ
  */
 @Stateless
-@RolesAllowed(value = "staffRole")
+@RolesAllowed(value = "anyoneRole staffRole")
 public class PersonService {
 
     // Add business logic below. (Right-click in editor and choose
@@ -33,6 +33,7 @@ public class PersonService {
     @EJB
     private AddressFacade af;
 
+    @PermitAll
     public Person createNewPerson (Person p) throws BusinessException {
         //check business rules
         if (this.hasSameName(p)) {

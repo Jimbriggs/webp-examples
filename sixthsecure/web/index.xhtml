@@ -9,6 +9,9 @@
         <h:form>
             <h:commandLink action="person">List persons</h:commandLink>
         </h:form>
+        <h:form rendered="#{!personController.initialised}">
+            <h:commandLink action="#{personController.init}">Initialise</h:commandLink>
+        </h:form>
     </h:body>
 </html>
 

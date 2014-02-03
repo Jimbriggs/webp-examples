@@ -3,10 +3,12 @@
 <glassfish-web-app error-url="">
   <security-role-mapping>
     <role-name>staffRole</role-name>
+    <principal-name>jim</principal-name>
     <group-name>staffGroup</group-name>
   </security-role-mapping>
   <security-role-mapping>
     <role-name>anyoneRole</role-name>
+    <principal-name>jim</principal-name>
     <group-name>anyoneGroup</group-name>
   </security-role-mapping>
   <class-loader delegate="true"/>
