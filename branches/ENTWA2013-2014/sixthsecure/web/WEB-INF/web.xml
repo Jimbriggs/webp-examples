@@ -36,7 +36,7 @@
     </security-constraint>
     <login-config>
         <auth-method>BASIC</auth-method>
-        <realm-name>testRealm</realm-name>
+        <realm-name>testJDBCRealm</realm-name>
     </login-config>
     <security-role>
         <description/>

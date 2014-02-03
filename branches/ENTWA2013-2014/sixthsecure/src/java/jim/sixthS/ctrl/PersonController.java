@@ -15,7 +15,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import jim.sixthS.bus.BusinessException;
 import jim.sixthS.bus.PersonService;
+import jim.sixthS.ent.LoginUser;
 import jim.sixthS.ent.Person;
+import jim.sixthS.pers.LoginUserFacade;
 
 /**
  *
@@ -66,6 +68,29 @@ public class PersonController extends MessageController {
             addError(ex, "Sorry you are not authorised to perform this operation.");
         }
         allPersons = ps.getAllPersons();
+        return "";
+    }
+
+    private boolean initialised = false;
+
+    public boolean isInitialised() {
+        return false;
+//        return initialised;
+    }
+
+    public void setInitialised(boolean initialised) {
+        this.initialised = initialised;
+    }
+
+    @EJB
+    private LoginUserFacade lf;
+
+    public String init () {
+        LoginUser u = new LoginUser();
+        u.setId("jim");
+        u.setPassword("test");
+        lf.create(u);
+        this.setInitialised(true);
         return "";
     }
 }
