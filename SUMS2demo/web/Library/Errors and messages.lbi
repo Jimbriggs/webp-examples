@@ -1,8 +1,0 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!-- #BeginLibraryItem "/Library/Messages.lbi" -->
-<html:messages id="message" message="true">
-<p><bean:write name="message"/></p>
-</html:messages><!-- #EndLibraryItem --><!-- #BeginLibraryItem "/Library/Errors.lbi" -->
-<html:messages id="error" message="false">
-<p><bean:write name="error"/></p>
-</html:messages><!-- #EndLibraryItem -->
