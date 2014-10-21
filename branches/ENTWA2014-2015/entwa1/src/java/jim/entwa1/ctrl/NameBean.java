@@ -5,8 +5,11 @@
  */
 package jim.entwa1.ctrl;
 
+import java.util.Calendar;
+import java.util.Date;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import jim.entity.Money;
 
 /**
  *
@@ -32,8 +35,57 @@ public class NameBean {
         this.name = name;
     }
 
+    private String ageGroup = "0-17";
+
+    public String getAgeGroup() {
+        return ageGroup;
+    }
+
+    public void setAgeGroup(String ageGroup) {
+        this.ageGroup = ageGroup;
+    }
+
+    private String[] allAges = {"0-17", "18-21", "22-99"};
+
+    public String[] getAllAges() {
+        return allAges;
+    }
+
+    public void setAllAges(String[] allAges) {
+        this.allAges = allAges;
+    }
+
+    private Calendar cal = Calendar.getInstance();
+
+    public Calendar getCal() {
+        return cal;
+    }
+
+    public void setCal(Calendar cal) {
+        this.cal = cal;
+    }
+
+    public Date getCalDate() {
+        return cal.getTime();
+    }
+
+    public void setCalDate(Date d) {
+        cal.setTime(d);
+    }
+
     public String doName() {
         return "";
     }
+
+    private Money cash;
+
+    public Money getCash() {
+        return cash;
+    }
+
+    public void setCash(Money cash) {
+        this.cash = cash;
+    }
+
 
 }
