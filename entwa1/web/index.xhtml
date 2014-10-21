@@ -1,17 +1,57 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
         Hello from Facelets
-        <h:form>
-            What's your name? <h:inputText value="#{nameBean.name}"/>
-            <h:commandButton value="Go" action="#{nameBean.doName()}"/>
-            #{nameBean.name}
-        </h:form>
+        <p>
+            <h:form id="MyForm">
+
+                <h:panelGrid columns="3">
+
+                    <h:outputText value="What's your name"  />
+
+                    <h:inputText value="#{nameBean.name}" id="MyName" >
+                        <f:validator validatorId="nameValidator"/>
+                    </h:inputText>
+                    <h:message for="MyName"/>
+
+                    <h:outputLabel value="What is your age group?" id="AgeGroup"/>
+                    <h:selectOneRadio value="#{nameBean.ageGroup}">
+                        <f:selectItems value="#{nameBean.allAges}"/>
+                        <f:selectItem itemValue="100+"/>
+                    </h:selectOneRadio>
+                    <h:message for="AgeGroup"/>
+
+                    <h:outputLabel value="Date:"/>
+                    <h:inputText value="#{nameBean.calDate}" id="cal">
+                        <f:convertDateTime dateStyle="short" locale="en/gb"/>
+                    </h:inputText>
+                    <h:message for="cal"/>
+
+                    <h:outputLabel value="How much cash have you got?"/>
+                    <h:inputText value="#{nameBean.cash}" id="cash">
+                        <f:converter converterId="moneyConverter"/>
+                    </h:inputText>
+                    <h:message for="cash"/>
+
+                    <h:commandButton value="Go" action="#{nameBean.doName()}"/>
+
+                </h:panelGrid>
+                <p>Hello #{nameBean.name} (age #{nameBean.ageGroup})</p>
+                <p>Date is <h:outputText value="#{nameBean.calDate}">
+                        <f:convertDateTime dateStyle="long" locale="en/us"/>
+                    </h:outputText>
+                </p>
+                <p>
+                    #{nameBean.cash.value}
+                </p>
+            </h:form>
+        </p>
     </h:body>
 </html>
 
