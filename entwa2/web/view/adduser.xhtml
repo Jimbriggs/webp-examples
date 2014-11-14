@@ -8,18 +8,23 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:panelGrid>
+            <h:panelGrid columns="3">
                 <h:outputText value="Forename"  />
                 <h:inputText value="#{userController.up.forename}" id="forename" >
-                    <f:validator validatorId="nameValidator"/>
                 </h:inputText>
                 <h:message for="forename"/>
 
                 <h:outputText value="Surname"  />
                 <h:inputText value="#{userController.up.surname}" id="surname" >
-                    <f:validator validatorId="nameValidator"/>
                 </h:inputText>
                 <h:message for="surname"/>
+
+                <h:outputLabel value="Address"/>
+                <h:selectOneMenu value="#{userController.address}" id="address">
+                    <f:selectItems value="#{userController.residences}" itemValue="#{r.id}" itemLabel="#{r.city}" var="r"/>
+                    <f:validateRequired/>
+                </h:selectOneMenu>
+                <h:message for="address"/>
 
                 <h:commandButton value="Add user" action="#{userController.doAddUser()}"/>
             </h:panelGrid>

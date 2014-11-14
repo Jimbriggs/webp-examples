@@ -36,4 +36,10 @@ public class UserPersonFacade extends AbstractFacade<UserPerson> {
         q.setParameter("surname", surname);
         return q.getResultList();
     }
+
+    public List<UserPerson> findUsersByCity(String city) {
+        Query q = em.createQuery("SELECT u FROM UserPerson u WHERE u.home.city = :city");
+        q.setParameter("city", city);
+        return q.getResultList();
+    }
 }
