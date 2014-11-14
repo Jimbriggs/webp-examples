@@ -52,10 +52,6 @@ public class UserController {
         this.up = up;
     }
 
-    public List<Address> getResidences() {
-        return us.findAllResidences();
-    }
-
     public String doAddUser() {
         try {
             us.addUser(up, address);
@@ -72,5 +68,8 @@ public class UserController {
         return us;
     }
 
-    
+    public List<Address> getResidences() {
+        return us.findAllResidences();
+    }
+
 }

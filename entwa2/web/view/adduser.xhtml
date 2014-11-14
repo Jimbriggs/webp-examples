@@ -21,8 +21,7 @@
 
                 <h:outputLabel value="Address"/>
                 <h:selectOneMenu value="#{userController.address}" id="address">
-                    <f:selectItems value="#{userController.residences}" itemValue="#{r.id}" itemLabel="#{r.city}" var="r"/>
-                    <f:validateRequired/>
+                    <f:selectItems value="#{userController.residences}" />
                 </h:selectOneMenu>
                 <h:message for="address"/>
 

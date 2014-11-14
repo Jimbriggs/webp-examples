@@ -76,7 +76,8 @@ public class Address implements Serializable {
 
     @Override
     public String toString() {
-        return "jim.entwa2.ent.Address[ id=" + id + " ]";
+        return this.city;
+        //return "jim.entwa2.ent.Address[ id=" + id + " ]";
     }
 
 }

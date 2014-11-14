@@ -33,7 +33,6 @@ public class AddressConverter implements Converter {
         if (value instanceof Address) {
             Address a = (Address)value;
             return a.getId().toString();
-//            return a.getCity();
         } else {
             throw new Error("Wrong type");
         }
