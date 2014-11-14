@@ -82,7 +82,7 @@ public class UserPerson implements Serializable {
 
     @Override
     public String toString() {
-        return "jim.entwa2.ent.User[ id=" + id + " ]";
+        return this.forename + " " + this.surname;
     }
 
 }

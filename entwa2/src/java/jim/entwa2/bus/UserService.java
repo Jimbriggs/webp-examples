@@ -52,4 +52,8 @@ public class UserService {
         return af.find(id);
     }
 
+    public List<UserPerson> findAllUsers() {
+        return upf.findAll();
+    }
+
 }

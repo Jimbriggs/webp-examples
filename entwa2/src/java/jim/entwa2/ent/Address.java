@@ -74,6 +74,10 @@ public class Address implements Serializable {
         return true;
     }
 
+    public String getAsText() {
+        return this.city;
+    }
+    
     @Override
     public String toString() {
         return this.city;
