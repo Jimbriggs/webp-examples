@@ -27,6 +27,17 @@
 
                 <h:commandButton value="Add user" action="#{userController.doAddUser()}"/>
             </h:panelGrid>
+            <h2>Users registered</h2>
+            <h:dataTable value="#{userController.allUsers}" var="up">
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    <h:outputText value="#{up}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Address</f:facet>
+                    <h:outputText value="#{up.home.asText}"/>
+                </h:column>
+            </h:dataTable>
         </h:form>
     </h:body>
 </html>

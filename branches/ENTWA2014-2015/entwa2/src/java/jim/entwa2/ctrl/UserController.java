@@ -72,4 +72,7 @@ public class UserController {
         return us.findAllResidences();
     }
 
+    public List<UserPerson> getAllUsers() {
+        return us.findAllUsers();
+    }
 }
