@@ -5,6 +5,7 @@
  */
 package jim.apsw3.ctrl;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -35,6 +36,10 @@ public class PersonController {
      * Creates a new instance of PersonController
      */
     public PersonController() {
+    }
+
+    public List<Person> getAllUsers() {
+        return ps.findAllPersons();
     }
 
     public String doAddPerson() {
