@@ -5,6 +5,7 @@
  */
 package jim.apsw3.bus;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import jim.apsw3.ents.Person;
@@ -27,5 +28,9 @@ public class PersonService {
             pf.create(p);
         }
         return p;
+    }
+
+    public List<Person> findAllPersons() {
+        return pf.findAll();
     }
 }

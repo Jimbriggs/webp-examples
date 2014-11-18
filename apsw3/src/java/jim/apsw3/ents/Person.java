@@ -39,7 +39,7 @@ public class Person implements Serializable {
     public void setSurname(String surname) {
         this.surname = surname;
     }
-    
+
 
     public Long getId() {
         return id;
@@ -71,7 +71,8 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "jim.apsw3.ents.Person[ id=" + id + " ]";
+        return forename + " " + surname;
+//        return "jim.apsw3.ents.Person[ id=" + id + " ]";
     }
 
 }
