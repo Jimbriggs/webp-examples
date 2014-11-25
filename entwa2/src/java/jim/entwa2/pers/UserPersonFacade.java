@@ -5,6 +5,7 @@
  */
 package jim.entwa2.pers;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -41,5 +42,19 @@ public class UserPersonFacade extends AbstractFacade<UserPerson> {
         Query q = em.createQuery("SELECT u FROM UserPerson u WHERE u.home.city = :city");
         q.setParameter("city", city);
         return q.getResultList();
+    }
+
+    static final String[] initNames = {"Jim", "John", "Jack"};
+
+    public List<UserPerson> createInitialData() {
+        List<UserPerson> l = new ArrayList<>();
+        for (String s : initNames) {
+            UserPerson up = new UserPerson();
+            up.setForename(s);
+            up.setSurname("Testuser");
+            this.create(up);
+            l.add(up);
+        }
+        return l;
     }
 }
