@@ -5,9 +5,12 @@
  */
 package jim.entwa2.pers;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import jim.entwa2.ent.Address;
 import jim.entwa2.ent.Address;
 
 /**
@@ -28,4 +31,16 @@ public class AddressFacade extends AbstractFacade<Address> {
         super(Address.class);
     }
 
+    static final String[] initNames = {"Brighton", "Southampton", "Plymouth"};
+
+    public List<Address> createInitialData() {
+        List<Address> l = new ArrayList<>();
+        for (String s : initNames) {
+            Address addr = new Address();
+            addr.setCity(s);
+            this.create(addr);
+            l.add(addr);
+        }
+        return l;
+    }
 }

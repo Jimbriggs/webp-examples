@@ -14,6 +14,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import jim.entwa2.bus.BusinessException;
+import jim.entwa2.bus.InitService;
 import jim.entwa2.bus.UserService;
 import jim.entwa2.ent.Address;
 import jim.entwa2.ent.UserPerson;
@@ -74,5 +75,20 @@ public class UserController {
 
     public List<UserPerson> getAllUsers() {
         return us.findAllUsers();
+    }
+
+    @EJB
+    private InitService is;
+
+    public String doInit() {
+        try {
+            is.initialise();
+        } catch (BusinessException ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+            FacesMessage fm = new FacesMessage(ex.getMessage());
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage(null, fm);
+        }
+        return "";
     }
 }
