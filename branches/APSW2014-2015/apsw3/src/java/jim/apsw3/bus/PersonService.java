@@ -10,6 +10,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import jim.apsw3.ents.Person;
 import jim.apsw3.pers.PersonFacade;
+import jim.common.bus.BusinessException;
 
 /**
  *
@@ -23,14 +24,20 @@ public class PersonService {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    public Person addPerson(Person p) {
-        if (true) {
+    public Person addPerson(Person p) throws BusinessException {
+        if (!alreadyExist(p)) {
             pf.create(p);
+        } else {
+            throw new BusinessException("Person already exists with name " + p.getForename() + " " + p.getSurname());
         }
         return p;
     }
 
     public List<Person> findAllPersons() {
         return pf.findAll();
+    }
+
+    private boolean alreadyExist(Person p) {
+        return !pf.findPersonByName(p.getForename(), p.getSurname()).isEmpty();
     }
 }
