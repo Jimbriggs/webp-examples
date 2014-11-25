@@ -6,11 +6,15 @@
 package jim.apsw3.ctrl;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import jim.apsw3.bus.PersonService;
 import jim.apsw3.ents.Person;
+import jim.common.bus.BusinessException;
+import jim.common.ctrl.MessageController;
 
 /**
  *
@@ -18,7 +22,7 @@ import jim.apsw3.ents.Person;
  */
 @Named(value = "personController")
 @RequestScoped
-public class PersonController {
+public class PersonController extends MessageController {
 
     @EJB
     private PersonService ps;
@@ -43,7 +47,15 @@ public class PersonController {
     }
 
     public String doAddPerson() {
-        ps.addPerson(p);
+        try {
+            ps.addPerson(p);
+        } catch (BusinessException ex) {
+            Logger.getLogger(PersonController.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            addError(ex.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(PersonController.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            addError("Some unexpected error occurred with message: " + ex.getMessage());
+        }
         return "";
     }
 }

@@ -5,9 +5,11 @@
  */
 package jim.apsw3.pers;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import jim.apsw3.ents.Person;
 
 /**
@@ -26,6 +28,13 @@ public class PersonFacade extends AbstractFacade<Person> {
 
     public PersonFacade() {
         super(Person.class);
+    }
+
+    public List<Person> findPersonByName(String forename, String surname) {
+        Query q = em.createQuery("select p from Person p where p.forename = :forename AND p.surname = :surname");
+        q.setParameter("forename", forename);
+        q.setParameter("surname", surname);
+        return q.getResultList();
     }
 
 }

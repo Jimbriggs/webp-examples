@@ -7,20 +7,24 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form>
+        <h:form id="myform">
             <h:panelGrid columns="3">
                 <h:outputText value="Forename"  />
-                <h:inputText value="#{personController.p.forename}" id="forename" >
+                <h:inputText value="#{personController.p.forename}" id="forename">
+                    <f:validateRequired/>
                 </h:inputText>
                 <h:message for="forename"/>
 
                 <h:outputText value="Surname"  />
                 <h:inputText value="#{personController.p.surname}" id="surname" >
+                    <f:validator validatorId="personNameValidator"/>
                 </h:inputText>
                 <h:message for="surname"/>
 
                 <h:commandButton value="Add person" action="#{personController.doAddPerson()}"/>
             </h:panelGrid>
+
+            <h:messages/>
 
             <h2>Users registered</h2>
             <h:dataTable value="#{personController.allUsers}" var="up">
