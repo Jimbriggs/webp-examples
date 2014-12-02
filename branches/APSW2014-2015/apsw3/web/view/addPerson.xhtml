@@ -21,6 +21,12 @@
                 </h:inputText>
                 <h:message for="surname"/>
 
+                <h:outputText value="Address"  />
+                <h:selectOneMenu value="#{personController.addr}" id="address">
+                    <f:selectItems value="#{personController.allAddresses}"/>
+                </h:selectOneMenu>
+                <h:message for="address"/>
+
                 <h:commandButton value="Add person" action="#{personController.doAddPerson()}"/>
             </h:panelGrid>
 
@@ -32,14 +38,18 @@
                     <f:facet name="header">Name</f:facet>
                     <h:outputText value="#{up}"/>
                 </h:column>
-                <!--
+
                 <h:column>
                     <f:facet name="header">Address</f:facet>
-                    <h:outputText value="#up.home.asText}"/>
+                    <h:outputText value="#{up.home.asText}"/>
                 </h:column>
-                -->
+
             </h:dataTable>
 
+        </h:form>
+
+        <h:form>
+            <h:commandButton value="Initialise addresses" action="#{personController.doInitAddresses()}"/>
         </h:form>
     </h:body>
 </html>

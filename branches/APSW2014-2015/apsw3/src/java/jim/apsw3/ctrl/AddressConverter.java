@@ -1,0 +1,43 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package jim.apsw3.ctrl;
+
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
+import javax.faces.convert.FacesConverter;
+import jim.apsw3.ents.Address;
+
+/**
+ *
+ * @author BriggsJ
+ */
+@FacesConverter(forClass = Address.class)
+public class AddressConverter implements Converter {
+
+    @Override
+    public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+        Long l = Long.parseLong(value);
+//        FacesContext facesContext = FacesContext.getCurrentInstance();
+        PersonController uc = (PersonController)facesContext.getApplication().getELResolver().
+                getValue(facesContext.getELContext(), null, "personController");
+        Address a = uc.getPs().findAddressById(l);
+        return a;
+    }
+
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value) {
+        if (value instanceof Address) {
+            Address a = (Address)value;
+            return a.getId().toString();
+        } else {
+            throw new Error("Wrong type");
+        }
+    }
+
+
+
+}

@@ -6,51 +6,27 @@
 package jim.apsw3.ents;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author BriggsJ
  */
 @Entity
-public class Person implements Serializable {
+public class Address implements Serializable {
+    @OneToMany(mappedBy = "home")
+    private List<Person> residents;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String forename;
-    private String surname;
-    @ManyToOne
-    private Address home;
-
-    public Address getHome() {
-        return home;
-    }
-
-    public void setHome(Address home) {
-        this.home = home;
-    }
-
-    public String getForename() {
-        return forename;
-    }
-
-    public void setForename(String forename) {
-        this.forename = forename;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
+    private String city;
 
     public Long getId() {
         return id;
@@ -60,6 +36,26 @@ public class Person implements Serializable {
         this.id = id;
     }
 
+    public List<Person> getResidents() {
+        return residents;
+    }
+
+    public void setResidents(List<Person> residents) {
+        this.residents = residents;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAsText() {
+        return "City of " + city;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -70,10 +66,10 @@ public class Person implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person)) {
+        if (!(object instanceof Address)) {
             return false;
         }
-        Person other = (Person) object;
+        Address other = (Address) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -82,16 +78,8 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return forename + " " + surname;
-//        return "jim.apsw3.ents.Person[ id=" + id + " ]";
+        return this.city;
+//        return "jim.apsw3.ents.Address[ id=" + id + " ]";
     }
 
-    public Address changeAddress(Address newAddress) {
-        if (this.home != null) {
-            this.home.getResidents().remove(this);
-        }
-        this.home = newAddress;
-        newAddress.getResidents().add(this);
-        return newAddress;
-    }
 }

@@ -12,6 +12,7 @@ import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import jim.apsw3.bus.PersonService;
+import jim.apsw3.ents.Address;
 import jim.apsw3.ents.Person;
 import jim.common.bus.BusinessException;
 import jim.common.ctrl.MessageController;
@@ -27,7 +28,12 @@ public class PersonController extends MessageController {
     @EJB
     private PersonService ps;
 
+    public PersonService getPs() {
+        return ps;
+    }
+
     private Person p = new Person();
+    private Address addr = new Address();
 
     public Person getP() {
         return p;
@@ -36,6 +42,16 @@ public class PersonController extends MessageController {
     public void setP(Person p) {
         this.p = p;
     }
+
+    public Address getAddr() {
+        return addr;
+    }
+
+    public void setAddr(Address addr) {
+        this.addr = addr;
+    }
+
+
     /**
      * Creates a new instance of PersonController
      */
@@ -48,7 +64,7 @@ public class PersonController extends MessageController {
 
     public String doAddPerson() {
         try {
-            ps.addPerson(p);
+            ps.addPerson(p, addr);
         } catch (BusinessException ex) {
             Logger.getLogger(PersonController.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
             addError(ex.getMessage());
@@ -56,6 +72,15 @@ public class PersonController extends MessageController {
             Logger.getLogger(PersonController.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
             addError("Some unexpected error occurred with message: " + ex.getMessage());
         }
+        return "";
+    }
+
+    public List<Address> getAllAddresses() {
+        return ps.findAllAddresses();
+    }
+
+    public String doInitAddresses() {
+        ps.initAddresses();
         return "";
     }
 }
