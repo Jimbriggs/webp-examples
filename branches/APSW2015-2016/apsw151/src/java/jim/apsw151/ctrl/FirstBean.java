@@ -6,7 +6,6 @@
 package jim.apsw151.ctrl;
 
 import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.context.RequestScoped;
 
 /**
@@ -14,7 +13,6 @@ import javax.enterprise.context.RequestScoped;
  * @author BriggsJ
  */
 @Named(value = "firstBean")
-//@Dependent
 @RequestScoped
 public class FirstBean {
 
@@ -63,7 +61,5 @@ public class FirstBean {
     public void setSelected(String selected) {
         this.selected = selected;
     }
-
-    
 
 }
