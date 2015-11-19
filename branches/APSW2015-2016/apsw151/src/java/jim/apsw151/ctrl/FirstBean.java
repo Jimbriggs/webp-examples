@@ -5,8 +5,11 @@
  */
 package jim.apsw151.ctrl;
 
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import jim.apsw151.bus.PersonService;
+import jim.apsw151.ents.Person;
 
 /**
  *
@@ -41,12 +44,19 @@ public class FirstBean {
         this.newName = newName;
     }
 
+    @EJB
+    private PersonService ps;
+
     public String doChangeName() {
         myName = newName;
+        Person p = new Person();
+        p.setForename(myName);
+        p.setSurname(myName);
+        ps.createNewPerson(p);
         return "";
     }
 
-    private String[] options = {"one", "two", "three"};
+    private final String[] options = {"one", "two", "three"};
 
     public String[] getOptions() {
         return options;
@@ -61,5 +71,6 @@ public class FirstBean {
     public void setSelected(String selected) {
         this.selected = selected;
     }
+
 
 }
