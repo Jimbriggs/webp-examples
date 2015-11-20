@@ -7,6 +7,13 @@
     </h:head>
     <h:body>
         Hello from Facelets
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Name:"/>
+                <h:inputText value="#{personBean.p.name}"/>
+                <h:commandButton value="Add" action="#{personBean.doAddNewPerson()}"/>
+            </h:panelGrid>
+        </h:form>
     </h:body>
 </html>
 
