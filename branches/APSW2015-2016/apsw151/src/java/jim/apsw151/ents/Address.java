@@ -6,60 +6,64 @@
 package jim.apsw151.ents;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import jim.common.converters.Convertable;
 
 /**
  *
  * @author BriggsJ
  */
 @Entity
-public class Person implements Serializable {
+public class Address implements Serializable, Convertable {
+
+    @OneToMany(mappedBy = "home")
+    private List<Person> occupants;
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String surname;
-    private String forename;
-    private String emailAddress;
-    @ManyToOne
-    private Address home;
+    private String street;
+    private String city;
+    private String postcode;
 
-    public Address getHome() {
-        return home;
+    public String getStreet() {
+        return street;
     }
 
-    public void setHome(Address home) {
-        this.home = home;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getCity() {
+        return city;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getForename() {
-        return forename;
+    public String getPostcode() {
+        return postcode;
     }
 
-    public void setForename(String forename) {
-        this.forename = forename;
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
+    public List<Person> getOccupants() {
+        return occupants;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setOccupants(List<Person> occupants) {
+        this.occupants = occupants;
     }
+
 
     public Long getId() {
         return id;
@@ -67,10 +71,6 @@ public class Person implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getFullName() {
-        return this.getForename() + " " + this.getSurname();
     }
 
     @Override
@@ -83,10 +83,10 @@ public class Person implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person)) {
+        if (!(object instanceof Address)) {
             return false;
         }
-        Person other = (Person) object;
+        Address other = (Address) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -95,7 +95,8 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "jim.apsw151.ents.Person[ id=" + id + " ]";
+        return this.getStreet() + ", " + this.getCity() + ", " + this.getPostcode();
+//        return "jim.apsw151.ents.Address[ id=" + id + " ]";
     }
 
 }
