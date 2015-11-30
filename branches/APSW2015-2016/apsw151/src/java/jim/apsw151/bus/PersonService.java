@@ -31,10 +31,12 @@ public class PersonService {
             //do operation
             Address a = p.getHome();
             if (a != null) {
-            a = af.edit(a);
+                a = af.edit(a);
+                p.setHome(a);
+                a.getOccupants().add(p);
+            } else {
+                throw new BusinessException("No address specified");
             }
-            p.setHome(a);
-            a.getOccupants().add(p);
             pf.create(p);
             //return an appropriate object
             return p;
