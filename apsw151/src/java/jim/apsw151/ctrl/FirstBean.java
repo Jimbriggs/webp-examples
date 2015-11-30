@@ -5,10 +5,15 @@
  */
 package jim.apsw151.ctrl;
 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import jim.apsw151.bus.BusinessException;
 import jim.apsw151.bus.PersonService;
+import jim.apsw151.ents.Address;
 import jim.apsw151.ents.Person;
 
 /**
@@ -17,7 +22,7 @@ import jim.apsw151.ents.Person;
  */
 @Named(value = "firstBean")
 @RequestScoped
-public class FirstBean {
+public class FirstBean extends MessageController {
 
     /**
      * Creates a new instance of FirstView
@@ -46,14 +51,29 @@ public class FirstBean {
 
     @EJB
     private PersonService ps;
+    private Person p = new Person();
 
     public String doChangeName() {
-        myName = newName;
-        Person p = new Person();
-        p.setForename(myName);
-        p.setSurname(myName);
-        ps.createNewPerson(p);
+        try {
+            ps.createNewPerson(p);
+            addInfo(p.getFullName() + " successfully added");
+        } catch (BusinessException ex) {
+            Logger.getLogger(FirstBean.class.getName()).log(Level.SEVERE, null, ex);
+            addError(ex.getLocalizedMessage());
+        }
         return "";
+    }
+
+    public List<Address> getAllAddresses() {
+        return ps.getAllAddresses();
+    }
+
+    public Person getP() {
+        return p;
+    }
+
+    public void setP(Person p) {
+        this.p = p;
     }
 
     private final String[] options = {"one", "two", "three"};
@@ -71,6 +91,5 @@ public class FirstBean {
     public void setSelected(String selected) {
         this.selected = selected;
     }
-
 
 }

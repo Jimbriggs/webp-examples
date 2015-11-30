@@ -14,18 +14,26 @@
                 <h:outputText value="#{firstBean.myName}"/>
                 <h:outputLabel value=""/>
 
-                <h:outputLabel value="What is your new name? "/>
-                <h:inputText id="newName" value="#{firstBean.newName}">
+                <h:outputLabel value="What is your forename? "/>
+                <h:inputText id="foreName" value="#{firstBean.p.forename}">
                     <f:validateLength minimum="5"/>
                 </h:inputText>
-                <h:message for="newName"/>
+                <h:message for="foreName"/>
 
-                <h:selectOneMenu value="#{firstBean.selected}">
-                    <f:selectItems value="#{firstBean.options}"/>
+                <h:outputLabel value="What is your surname? "/>
+                <h:inputText id="surName" value="#{firstBean.p.surname}">
+                    <f:validateLength minimum="5"/>
+                </h:inputText>
+                <h:message for="surName"/>
+
+                <h:selectOneMenu value="#{firstBean.p.home}" > <!--converter="addressConverter" -->
+                    <f:selectItems value="#{firstBean.allAddresses}" /> <!-- var="a" itemLabel="#{a}" itemValue="#{a.id}"/ -->
                 </h:selectOneMenu>
 
                 <h:outputText value="#{firstBean.selected}"/>
                 <h:commandButton value="Go" action="#{firstBean.doChangeName()}"/>
+
+                <h:messages/>
             </h:panelGrid>
 
         </h:form>
