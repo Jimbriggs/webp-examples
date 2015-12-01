@@ -6,26 +6,29 @@
 package jim.entwa.ent;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author BriggsJ
  */
 @Entity
-public class Person implements Serializable {
+public class Address implements Serializable {
+
+    @OneToMany(mappedBy = "home")
+    private Set<Person> occupants = new HashSet<>();
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    @ManyToOne
-    private Address home;
+    private String city;
 
     public Long getId() {
         return id;
@@ -35,22 +38,26 @@ public class Person implements Serializable {
         this.id = id;
     }
 
-    public Address getHome() {
-        return home;
+    public Set<Person> getOccupants() {
+        return occupants;
     }
 
-    public void setHome(Address home) {
-        this.home = home;
+    public void setOccupants(Set<Person> occupants) {
+        this.occupants = occupants;
     }
 
-    public String getName() {
-        return name;
+    public String getCity() {
+        return city;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCity(String city) {
+        this.city = city;
     }
 
+    public String getAsString() {
+        return city;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -61,10 +68,10 @@ public class Person implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Person)) {
+        if (!(object instanceof Address)) {
             return false;
         }
-        Person other = (Person) object;
+        Address other = (Address) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -73,8 +80,8 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return name;
-//        return "jim.entwa.ent.Person[ id=" + id + " ]";
+        return city;
+        //return "jim.entwa.ent.Address[ id=" + id + " ]";
     }
 
 }
