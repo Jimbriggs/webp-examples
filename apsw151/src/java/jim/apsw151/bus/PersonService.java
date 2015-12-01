@@ -56,4 +56,8 @@ public class PersonService {
     public List<Address> getAllAddresses() {
         return af.findAll();
     }
+
+    public List<Person> getAllPersons() {
+        return pf.findAll();
+    }
 }

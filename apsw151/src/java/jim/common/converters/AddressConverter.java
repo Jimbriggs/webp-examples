@@ -5,20 +5,40 @@
  */
 package jim.common.converters;
 
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import jim.apsw151.ctrl.AddressBean;
 import jim.apsw151.ents.Address;
 import jim.apsw151.pers.AddressFacade;
+
 
 /**
  *
  * @author BriggsJ
  */
 @FacesConverter(forClass = Address.class)
-public class AddressConverter extends AbstractConverter<Address, AddressFacade, AddressBean> {
+public class AddressConverter implements Converter {
 
-    public AddressConverter(Class<Address> entityClass, Class<AddressFacade> facade, Class<AddressBean> controller) {
-        super(entityClass, facade, controller);
+    @Override
+    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        AddressBean addrCtrl = (AddressBean) facesContext.getApplication().getELResolver().
+                getValue(facesContext.getELContext(), null, "addressBean");
+        AddressFacade af = addrCtrl.getFacade();
+        Long id = Long.decode(value);
+        Address a = af.find(id);
+        return a;
+    }
+
+    @Override
+    public String getAsString(FacesContext context, UIComponent component, Object value) {
+        if (value instanceof Address) {
+            return ((Address) value).getId().toString();
+        } else {
+            throw new Error("object is not of type Address");
+        }
     }
 
 }

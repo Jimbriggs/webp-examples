@@ -52,9 +52,13 @@ public class FirstBean extends MessageController {
     @EJB
     private PersonService ps;
     private Person p = new Person();
+    private Address a = new Address();
 
     public String doChangeName() {
         try {
+            if (a != null) {
+                p.setHome(a);
+            }
             ps.createNewPerson(p);
             addInfo(p.getFullName() + " successfully added");
         } catch (BusinessException ex) {
@@ -68,12 +72,24 @@ public class FirstBean extends MessageController {
         return ps.getAllAddresses();
     }
 
+    public List<Person> getAllPersons() {
+        return ps.getAllPersons();
+    }
+    
     public Person getP() {
         return p;
     }
 
     public void setP(Person p) {
         this.p = p;
+    }
+
+    public Address getA() {
+        return a;
+    }
+
+    public void setA(Address a) {
+        this.a = a;
     }
 
     private final String[] options = {"one", "two", "three"};
