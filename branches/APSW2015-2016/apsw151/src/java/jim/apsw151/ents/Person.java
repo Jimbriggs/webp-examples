@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import org.w3c.dom.NameList;
 
 /**
  *
@@ -95,7 +96,8 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "jim.apsw151.ents.Person[ id=" + id + " ]";
+        return getFullName();
+//        return "jim.apsw151.ents.Person[ id=" + id + " ]";
     }
 
 }

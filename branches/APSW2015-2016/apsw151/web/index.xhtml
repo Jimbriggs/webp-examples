@@ -16,18 +16,19 @@
 
                 <h:outputLabel value="What is your forename? "/>
                 <h:inputText id="foreName" value="#{firstBean.p.forename}">
-                    <f:validateLength minimum="5"/>
+                    <f:validateLength minimum="1"/>
                 </h:inputText>
                 <h:message for="foreName"/>
 
                 <h:outputLabel value="What is your surname? "/>
                 <h:inputText id="surName" value="#{firstBean.p.surname}">
-                    <f:validateLength minimum="5"/>
+                    <f:validateLength minimum="1"/>
                 </h:inputText>
                 <h:message for="surName"/>
 
-                <h:selectOneMenu value="#{firstBean.p.home}" > <!--converter="addressConverter" -->
-                    <f:selectItems value="#{firstBean.allAddresses}" /> <!-- var="a" itemLabel="#{a}" itemValue="#{a.id}"/ -->
+                <h:selectOneMenu value="#{firstBean.a}" > <!--converter="addressConverter" -->
+                    <f:selectItems value="#{addressBean.itemsAvailableSelectOne}" itemValue="#{a.id}}"/>
+                    <!-- var="a" itemLabel="#{a}" itemValue="#{a.id}"/ -->
                 </h:selectOneMenu>
 
                 <h:outputText value="#{firstBean.selected}"/>
@@ -36,6 +37,16 @@
                 <h:messages/>
             </h:panelGrid>
 
+            <h:dataTable value="#{firstBean.allPersons}" var="ap">
+                <h:column>
+                    <f:facet name="header">Name</f:facet>
+                    <h:outputText value="#{ap}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Address</f:facet>
+                    <h:outputText value="#{ap.home.city}"/>
+                </h:column>
+            </h:dataTable>
         </h:form>
     </h:body>
 </html>
