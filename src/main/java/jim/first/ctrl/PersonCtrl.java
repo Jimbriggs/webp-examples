@@ -5,11 +5,15 @@
  */
 package jim.first.ctrl;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import jim.first.bus.BusinessException;
 import jim.first.bus.PersonService;
 import jim.first.ent.Person;
 
@@ -51,7 +55,13 @@ public class PersonCtrl {
     private PersonService ps;
 
     public String doInsertPerson() {
-        ps.createNewPerson(newPerson);
+        try {
+            ps.createNewPerson(newPerson);
+        } catch (BusinessException ex) {
+            Logger.getLogger(PersonCtrl.class.getName()).log(Level.SEVERE, null, ex);
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.addMessage("", new FacesMessage(ex.getMessage()));
+        }
         return "";
     }
 }

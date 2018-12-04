@@ -12,6 +12,7 @@
             <h:inputText value="#{personCtrl.newPerson.name}"/>
             <h:commandButton action="#{personCtrl.doInsertPerson()}" value="Insert"/>
         </h:form>
+        <h:messages/>
         <h:dataTable value="#{personCtrl.allPersons}" var="p">
             <h:column>#{p.name}</h:column>>
         </h:dataTable>

@@ -23,15 +23,15 @@ public class PersonService {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    public Person createNewPerson(Person p) {
+    public Person createNewPerson(Person p) throws BusinessException {
         //check things: duplicates
         boolean ok = true;
-        if (ok) {
+        if (pf.findPersonByName(p.getName()).isEmpty()) {
             pf.create(p);
             return p;
         } else {
             //raise problem
-            return null;
+            throw new BusinessException("Duplicated name: " + p.getName());
         }
     }
 

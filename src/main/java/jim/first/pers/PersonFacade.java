@@ -5,9 +5,11 @@
  */
 package jim.first.pers;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import jim.first.ent.Person;
 
 /**
@@ -29,4 +31,17 @@ public class PersonFacade extends AbstractFacade<Person> {
         super(Person.class);
     }
     
+    public List<Person> findPersonByName (String name2searchfor){
+        Query q = em.createQuery("SELECT p FROM Person p WHERE p.name = :searchname");
+        q.setParameter("searchname", name2searchfor);
+        List<Person> pl = q.getResultList();
+        return pl;
+    }
+    
+    public List<Person> findPersonByCity (String cityname) {
+        Query q = em.createQuery("SELECT p FROM Person p WHERE p.home.city = :searchname");
+        q.setParameter("searchname", cityname);
+        List<Person> pl = q.getResultList();
+        return pl;
+    }
 }
