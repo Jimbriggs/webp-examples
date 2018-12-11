@@ -8,7 +8,9 @@ package jim.first.bus;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import jim.first.ent.Address;
 import jim.first.ent.Person;
+import jim.first.pers.AddressFacade;
 import jim.first.pers.PersonFacade;
 
 /**
@@ -20,6 +22,8 @@ public class PersonService {
 
     @EJB
     private PersonFacade pf;
+    @EJB
+    private AddressFacade af;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -37,6 +41,22 @@ public class PersonService {
 
     public List<Person> findAllPersons() {
         return pf.findAll();
-        
+
+    }
+
+    public Person associatePersonHome(Person person, Address newAddress) {
+        person = pf.edit(person);
+        newAddress = af.edit(newAddress);
+        Address oldAddress = person.getHome();
+        if (oldAddress != null && oldAddress.getResidents().contains(person)) {
+            oldAddress.getResidents().remove(person);
+        }
+        person.setHome(newAddress);
+        newAddress.getResidents().add(person);
+        return person;
+    }
+
+    public List<Address> findAllAddresses() {
+        return af.findAll();
     }
 }

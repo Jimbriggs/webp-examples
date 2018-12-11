@@ -73,7 +73,8 @@ public class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "jim.first.ent.Person[ id=" + id + " ]";
+        return name;
+//        return "jim.first.ent.Person[ id=" + id + " ]";
     }
     
 }

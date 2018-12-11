@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -9,13 +10,33 @@
         <p>Add a person to the database:</p>
         <h:form>
             <h:outputLabel value="Type name here: "/>
-            <h:inputText value="#{personCtrl.newPerson.name}"/>
+            <h:inputText value="#{personCtrl.newPerson.name}" id="name"/>
+            <h:message for="name" style="color:blue"/>
             <h:commandButton action="#{personCtrl.doInsertPerson()}" value="Insert"/>
         </h:form>
-        <h:messages/>
-        <h:dataTable value="#{personCtrl.allPersons}" var="p">
-            <h:column>#{p.name}</h:column>>
+
+        <h:messages style="color:red"/>
+
+        <p>Associate people and address</p>
+        <h:form>
+            <h:outputLabel value="Person"/>
+            <h:selectOneListbox value="#{personCtrl.currentPerson}">
+                <f:selectItems value="#{personCtrl.allPersons}"/>
+            </h:selectOneListbox>
+            <h:outputLabel value="Address"/>
+            <h:selectOneListbox value="#{personCtrl.currentAddress}">
+                <f:selectItems value="#{personCtrl.allAddresses}"/>
+            </h:selectOneListbox>
+            <h:commandButton action="#{personCtrl.doSetPersonHome()}" value="Set home"/>
+        </h:form>
+        <p>List of people</p>
+        <h:dataTable value="#{personCtrl.allPersons}" var="p" border="1" cellspacing="0">
+            <h:column><f:facet name="header">Name</f:facet>#{p.name}</h:column>
+            <h:column><f:facet name="header">City</f:facet>#{p.home.city}</h:column>
         </h:dataTable>
+        <h:form>
+            <h:commandButton value="Initialise" action="#{initCtrl.initialise()}"/>
+        </h:form>
     </h:body>
 </html>
 

@@ -15,6 +15,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import jim.first.bus.BusinessException;
 import jim.first.bus.PersonService;
+import jim.first.ent.Address;
 import jim.first.ent.Person;
 
 /**
@@ -32,13 +33,21 @@ public class PersonCtrl {
     }
 
     private Person newPerson = new Person();
+    private Person currentPerson = new Person();
+    private Address currentAddress = new Address();
     private List<Person> allPersons = null;
+    private List<Address> allAddresses = null;
 
     public List<Person> getAllPersons() {
         allPersons = ps.findAllPersons();
         return allPersons;
     }
 
+    public List<Address> getAllAddresses() {
+        allAddresses = ps.findAllAddresses();
+        return allAddresses;
+    }
+    
     public void setAllPersons(List<Person> allPersons) {
         this.allPersons = allPersons;
     }
@@ -51,6 +60,22 @@ public class PersonCtrl {
         this.newPerson = newPerson;
     }
 
+    public Person getCurrentPerson() {
+        return currentPerson;
+    }
+
+    public void setCurrentPerson(Person currentPerson) {
+        this.currentPerson = currentPerson;
+    }
+
+    public Address getCurrentAddress() {
+        return currentAddress;
+    }
+
+    public void setCurrentAddress(Address currentAddress) {
+        this.currentAddress = currentAddress;
+    }
+
     @EJB
     private PersonService ps;
 
@@ -60,8 +85,13 @@ public class PersonCtrl {
         } catch (BusinessException ex) {
             Logger.getLogger(PersonCtrl.class.getName()).log(Level.SEVERE, null, ex);
             FacesContext fc = FacesContext.getCurrentInstance();
-            fc.addMessage("", new FacesMessage(ex.getMessage()));
+            fc.addMessage("name", new FacesMessage(ex.getMessage()));
         }
+        return "";
+    }
+    
+    public String doSetPersonHome() {
+        currentPerson = ps.associatePersonHome(currentPerson, currentAddress);
         return "";
     }
 }
