@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Person application</title>
+    </h:head>
+    <h:body>
+        <h1>Person application</h1>
+        <p>Add to and list people in the database</p>
+        <h:form id="AddNewPerson">
+            <h:panelGrid columns="3">
+                <h:outputLabel value="First name"/>
+                <h:inputText value="#{personController.newItem.firstname}" id="Firstname">
+                    <f:validateRequired/>
+                </h:inputText>
+                <h:message for="Firstname"/>
+
+                <h:outputLabel value="Last name"/>
+                <h:inputText value="#{personController.newItem.lastname}" id="Lastname">
+                    <f:validateRegex pattern="^\w+"/>
+                </h:inputText>
+                <h:message for="Lastname"/>
+
+                <h:outputLabel value="Address"/>
+                <h:selectOneMenu value="#{personController.newItem.address}" id="Address">
+                    <f:selectItems value="#{addressController.itemsAvailableSelectOne}"/>
+                    <f:selectItem itemLabel="No address" itemValue="0"/>                
+                </h:selectOneMenu>
+                <h:message for="Address"/>
+
+                <h:commandButton value="Add person" action="#{personController.doAddPerson}"/>
+            </h:panelGrid>
+        </h:form>
+        <!--
+    <P>Add new address
+    <form name="NewAddress" action="addNewAddressServlet">
+        <table border="1" cellpadding="3">
+            <thead>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <td>First line</td>
+                    <td><input type="text" name="firstline" value="${address.firstline}" /></td>
+                    <td>${errors.firstline}</td>
+                </tr>
+                <tr>
+                    <td>Second line</td>
+                    <td><input type="text" name="secondline" value="${address.secondline}" /></td>
+                    <td>${errors.secondline}</td>
+                </tr>
+                <tr>
+                    <td>City</td>
+                    <td><input type="text" name="city" value="${address.city}" /></td>
+                    <td>${errors.city}</td>
+                </tr>
+                <tr>
+                    <td>Country</td>
+                    <td>${address.country}<select name="country">
+                            <option value="Ireland" ${address.country eq 'Ireland' ? 'selected':''}>Ireland</option>
+                            <option value="UK" ${address.country eq 'UK'?'selected':''}>UK</option>
+                            <option value="France" ${address.country eq 'France'?'selected':''}>France</option>
+                        </select>
+                    </td>
+                    <td>${errors.country}</td>
+                </tr>
+                <tr>
+                    <td>Postcode</td>
+                    <td><input type="text" name="postcode" value="${address.postcode}" /></td>
+                    <td>${errors.postcode}</td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Add" />
+                </tr>
+            </tbody>
+        </table>
+    </form>
+        -->
+    </h:body>
+</html>
+

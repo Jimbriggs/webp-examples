@@ -1,0 +1,6 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<logic:notPresent name="org.apache.struts.action.MESSAGE" scope="application">
+<font color="red">
+ERROR: Application resources not loaded -- check servlet container logs for error messages.
+</font>
+</logic:notPresent>
