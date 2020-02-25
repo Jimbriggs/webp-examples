@@ -1,0 +1,8 @@
+jim\firstee\pers\PersonFacade.class
+jim\firstee\bus\PersonService.class
+jim\firstee\pers\AbstractFacade.class
+jim\firstee\resources\JavaEE8Resource.class
+jim\firstee\ent\Person.class
+jim\firstee\ctrl\DoubleCtrl.class
+jim\firstee\JAXRSConfiguration.class
+jim\firstee\bus\DoubleService.class
