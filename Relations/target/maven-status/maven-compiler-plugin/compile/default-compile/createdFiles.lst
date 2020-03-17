@@ -1,0 +1,9 @@
+jim\relations\pers\PersonFacade.class
+jim\relations\bus\PeopleService.class
+jim\relations\ctrl\Controller.class
+jim\relations\ent\Person.class
+jim\relations\JAXRSConfiguration.class
+jim\relations\pers\AddressFacade.class
+jim\relations\ent\Address.class
+jim\relations\ctrl\AddressConverter.class
+jim\relations\pers\AbstractFacade.class
