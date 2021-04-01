@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p>
+                <h:inputText value="#{personCtrl.p.lastName}"/>
+                <h:selectOneMenu value="#{personCtrl.home}">
+                    <f:selectItems value="#{addressCtrl.allAddresses}" var="item" itemLabel="#{item.city}" itemValue="#{item.id}"/>
+                </h:selectOneMenu>
+                <h:commandButton value="Add person" action="#{personCtrl.doCreatePerson()}"/>
+            </p>
+            <p>
+                <h:inputText value="#{addressCtrl.a.city}"/>
+                <h:commandButton value="Add address" action="#{addressCtrl.doCreateAddress()}"/>
+            </p>
+            <p>
+                <h:dataTable value="#{personCtrl.allPersons}" var="p">
+                    <h:column>
+                        <h:outputText value="#{p.id}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{p.lastName}"/>
+                    </h:column>
+                    <h:column>
+                        <h:dataTable value="#{p.residences}" var="r">
+                            <h:column>
+                                <h:outputText value="#{r.city}"/>
+                            </h:column>
+                        </h:dataTable>
+                    </h:column>
+                </h:dataTable>
+            </p>
+            <p>
+                <h:dataTable value="#{addressCtrl.allAddresses}" var="a">
+                    <h:column>
+                        <h:outputText value="#{a.id}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{a.city}"/>
+                    </h:column>
+                </h:dataTable>
+            </p>
+        </h:form>
+    </h:body>
+</html>
+
