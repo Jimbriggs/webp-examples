@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<persistence version="2.2" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemalocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="jim_mar22a_war_1.0-SNAPSHOTPU" transaction-type="JTA">
+    <class>jim.mar22a.ent.Address</class>
+    <class>jim.mar22a.ent.Person</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <jta-data-source>java:app/jdbc/relations</jta-data-source>
+      <!-- property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/mar22a"/>
+            <property name="javax.persistence.jdbc.user" value="mar22a"/>
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+            <property name="javax.persistence.jdbc.password" value="mar22a"/>
+            <property name="javax.persistence.schema-generation.database.action" value="create"/ -->
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+    </properties>
+  </persistence-unit>
+</persistence>
