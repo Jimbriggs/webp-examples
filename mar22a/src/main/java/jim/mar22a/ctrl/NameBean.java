@@ -4,8 +4,10 @@
  */
 package jim.mar22a.ctrl;
 
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import jim.mar22a.bus.NameService;
 
 /**
  *
@@ -20,17 +22,17 @@ public class NameBean {
      */
     public NameBean() {
     }
-    
+
     private String name;
-    
+
     public String getName() {
         return name;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
-    
+
     private String city;
 
     /**
@@ -50,10 +52,13 @@ public class NameBean {
     public void setCity(String city) {
         this.city = city;
     }
-    
+
+    @EJB
+    private NameService ns;
+
     public String doNameUpdate() {
-        this.setName("updated to " + name);
+        this.setName(ns.processName(name));
         return "";
     }
-    
+
 }
