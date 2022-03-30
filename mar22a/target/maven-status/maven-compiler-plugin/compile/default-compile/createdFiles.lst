@@ -1,3 +1,8 @@
 jim\mar22a\ctrl\NameBean.class
 jim\mar22a\resources\JavaEE8Resource.class
+jim\mar22a\pers\AbstractFacade.class
+jim\mar22a\ent\Person.class
+jim\mar22a\pers\PersonFacade.class
 jim\mar22a\JAXRSConfiguration.class
+jim\mar22a\bus\NameService.class
+jim\mar22a\ent\Address.class

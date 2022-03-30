@@ -6,10 +6,13 @@
 package jim.mar22a.ent;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -22,6 +25,25 @@ public class Address implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String city;
+    @ManyToMany
+    private List<Person> residents = new ArrayList<>();
+
+    public List<Person> getResidents() {
+        return residents;
+    }
+
+    public void setResidents(List<Person> residents) {
+        this.residents = residents;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 
     public Long getId() {
         return id;
@@ -55,5 +77,5 @@ public class Address implements Serializable {
     public String toString() {
         return "jim.mar22a.ent.Address[ id=" + id + " ]";
     }
-    
+
 }

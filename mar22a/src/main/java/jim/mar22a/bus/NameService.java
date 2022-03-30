@@ -4,9 +4,12 @@
  */
 package jim.mar22a.bus;
 
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import jim.mar22a.ent.Address;
 import jim.mar22a.ent.Person;
+import jim.mar22a.pers.AddressFacade;
 import jim.mar22a.pers.PersonFacade;
 
 /**
@@ -18,6 +21,8 @@ public class NameService {
 
     @EJB
     private PersonFacade pf;
+    @EJB
+    private AddressFacade af;
 
     public String processName(String name) {
         name = "updated to " + name;
@@ -30,4 +35,39 @@ public class NameService {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    public Person livesAt(Person p, Address a) {
+        p = pf.edit(p);
+        a = af.edit(a);
+        p.getResidences().add(a);
+        a.getResidents().add(p);
+        return p;
+    }
+
+    public Person leaves(Person p, Address a) {
+        p = pf.edit(p);
+        a = af.edit(a);
+        p.getResidences().remove(a);
+        a.getResidents().remove(p);
+        return p;
+    }
+
+    public Person changeAddress(Person p, Address oldAddress, Address newAddress) {
+        p = pf.edit(p);
+        oldAddress = af.edit(oldAddress);
+        newAddress = af.edit(newAddress);
+        this.leaves(p, oldAddress);
+        this.livesAt(p, newAddress);
+        return p;
+    }
+
+    public List<Person> findAllPersons() {
+        //hrow new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+        return pf.findAll();
+    }
+
+    public List<Address> findAllAddresses() {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return af.findAll();
+    }
 }
