@@ -30,14 +30,25 @@ public class NameService {
         p.setName(name);
         pf.create(p);
         return name;
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    public Person livesAt(Person p, Address a) {
+    public Person livesAt(Person p, Address a) throws BusinessException {
+        if (p == null) {
+            throw new BusinessException("Person missing");
+        }
+        if (a == null) {
+            throw new BusinessException("Person missing");
+        }
         p = pf.edit(p);
         a = af.edit(a);
+        if (p.getResidences().contains(a)) {
+            throw new BusinessException("Person " + p.getName() + " already lives at " + a.getCity());
+        }
+        if (a.getResidents().contains(p)) {
+            throw new BusinessException("and Person " + p.getName() + " already lives at " + a.getCity());
+        }
         p.getResidences().add(a);
         a.getResidents().add(p);
         return p;
@@ -51,7 +62,7 @@ public class NameService {
         return p;
     }
 
-    public Person changeAddress(Person p, Address oldAddress, Address newAddress) {
+    public Person changeAddress(Person p, Address oldAddress, Address newAddress) throws BusinessException {
         p = pf.edit(p);
         oldAddress = af.edit(oldAddress);
         newAddress = af.edit(newAddress);
@@ -61,13 +72,10 @@ public class NameService {
     }
 
     public List<Person> findAllPersons() {
-        //hrow new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-
         return pf.findAll();
     }
 
     public List<Address> findAllAddresses() {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         return af.findAll();
     }
 }

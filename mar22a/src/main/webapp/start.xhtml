@@ -7,21 +7,33 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form>
+        <h:form id="newPerson">
             <h:outputLabel value="Name:"/>
             <h:inputText value="#{nameBean.name}"/>
             <h:commandButton value="Update" action="#{nameBean.doNameUpdate()}"/>
         </h:form>
         <hr/>
-        <h:form>
-            <h:selectOneMenu value="#{nameBean.resident}">
-                <f:selectItems value="#{nameBean.allPersons}" var="p" itemLabel="#{p.name}" itemValue="#{p.id}"/>
+        <h:form id="addAddress">
+            <h:selectOneMenu value="#{nameBean.resident}" id="resident">
+                <f:selectItems value="#{nameBean.allPersons}" var="p" itemLabel="#{p.name}" itemValue="#{p}"/>
+                <f:converter converterId="PersonConverter"/>
             </h:selectOneMenu>
-            <h:selectOneMenu value="#{nameBean.residence}">
-                <f:selectItems value="#{nameBean.allAddresses}" var="a" itemLabel="#{a.city}" itemValue="#{a.id}"/>
+            <h:selectOneMenu value="#{nameBean.residence}" id="residence">
+                <f:selectItems value="#{nameBean.allAddresses}" var="a" itemLabel="#{a.city}" itemValue="#{a}" />
+                <f:converter converterId="AddressConverter"/>
             </h:selectOneMenu>
             <h:commandButton value="add address" action="#{nameBean.doAddAddress()}"/>
         </h:form>
+        <h:dataTable value="#{nameBean.allPersons}" var="p" border="1">
+            <h:column>
+                <f:facet name="header">Person's name</f:facet>
+                <h:outputText value="#{p.name}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Residences</f:facet>
+                <h:outputText value="#{p.residencesList}"/>
+            </h:column>
+        </h:dataTable>
     </h:body>
 </html>
 
