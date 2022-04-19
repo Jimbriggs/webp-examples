@@ -4,9 +4,13 @@
  */
 package jim.mar22a.pers;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import jim.mar22a.ent.Address;
 import jim.mar22a.ent.Person;
 
 /**
@@ -27,5 +31,12 @@ public class PersonFacade extends AbstractFacade<Person> {
     public PersonFacade() {
         super(Person.class);
     }
-   
+
+    public List<Person> findByResidence(Address a) {
+//        Query q = em.createQuery("SELECT p FROM Person p WHERE :addr MEMBER OF p.residences");
+        Query q = em.createNamedQuery("person.findByResidence");
+        q.setParameter("addr", a);
+        return q.getResultList();
+    }
+
 }

@@ -11,12 +11,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Jim Briggs
  */
 @Entity
+@NamedQuery(name = "person.findByResidence", query = "SELECT p FROM Person p WHERE :addr MEMBER OF p.residences")
 public class Person implements java.io.Serializable {
 
     public Person() {

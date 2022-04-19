@@ -39,7 +39,7 @@ public class NameService {
             throw new BusinessException("Person missing");
         }
         if (a == null) {
-            throw new BusinessException("Person missing");
+            throw new BusinessException("Address missing");
         }
         p = pf.edit(p);
         a = af.edit(a);
@@ -77,5 +77,19 @@ public class NameService {
 
     public List<Address> findAllAddresses() {
         return af.findAll();
+    }
+
+    public List<Person> findAllResidentsOf(Address a) throws BusinessException {
+        //check for errors
+        if (a == null) {
+            throw new Error("findAllResidentsOf: No address specified");
+        }
+        //merge objects
+        a = af.edit(a);
+        //do the business
+//        List<Person> lp = a.getResidents();
+        List<Person> lp = pf.findByResidence(a);
+        //return the results
+        return lp;
     }
 }
